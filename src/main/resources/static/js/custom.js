@@ -2,7 +2,7 @@ function myFunction(){
     document.getElementById("frm1").submit();
     window.open('google.com');
     alert("Success!");
-    open("/success")
+    open("/createdroom");
 
     /*
         <script>
