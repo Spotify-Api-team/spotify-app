@@ -1,0 +1,40 @@
+input.button {
+    /*
+    background-color: green;
+    border: none;
+    color: white;
+    margin:auto;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    */
+    background-color: green;
+    position: absolute;
+    width: auto;
+    height: auto;
+    top: 50%;
+    margin:auto;
+    font-size: 100px;
+    display:block;
+}
+
+form{
+    background-color: yellow;
+    position: center;
+    padding:5px;
+    top: 50%;
+    margin:auto;
+    font-size: 60px;
+}
+form input{
+    background-color: white;
+    position: center;
+    top: 50%;
+    margin:auto;
+    font-size: 30px;
+}
+body {
+    background-color: lightblue;
+}
