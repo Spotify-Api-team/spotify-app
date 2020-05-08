@@ -1,5 +1,7 @@
 package com.Jukbox.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.ArrayList;
 
 /**
@@ -26,7 +28,7 @@ public class Room {
      * @param owner The owner of the room
      * @param id The room id
      */
-    public Room(Owner owner, int id) {
+    public Room(@JsonProperty() Owner owner, int id) {
 
         this.owner = owner;
         this.id = id;

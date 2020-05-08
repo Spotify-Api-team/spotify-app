@@ -2,24 +2,31 @@ package com.Jukbox.controller;
 
 import com.Jukbox.model.Member;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+@RequestMapping("controller/test")
 @RestController
 public class testcontroller {
 
-    @RequestMapping("/")
+    /**@RequestMapping("/")
     public String start(){
         return "index";   //thymeleaf expects the file index to be in the templates folder
+    }*/
+
+
+    @PostMapping
+    public void addMember(@RequestBody Member member){
+
+        System.out.println("testing...");
+        System.out.println(member.getName());
+
     }
 
-    @RequestMapping("controller/test")
-    @PostMapping
-    public void addMember(Member member){
+    @GetMapping
+    public String getMember(){
 
-        System.out.println(member.getName());
-        
+        return "working";
+
     }
 
 }
