@@ -2,27 +2,39 @@
 <html lang="en">
 <head>
 
-    <meta charset="UTF-8">
     <title>Spotify</title>
     <link rel="stylesheet" type="text/css" href="../css/custom.css">
-    <script type="text.javascript" src="/js/custom.js"></script>
+    <!--<script type="text.javascript" src="/js/custom.js"></script>-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
+    <script>
+        $(document).ready(function(){
+            $("button").click(function(){
+                $.ajax({
+                    type: "POST",
+                    contentType: "application/json",
+                    url: "http://localhost:8080/controller/test",
+                    dataType: 'json',
+                    data: {"name":"michael"}
+                });
+            });
+        });
+    </script>
 </head>
 <body>
 </body>
 <!-- test button
 <div>
     <input type="button" id="bt1" class="button" value="ButtonTest"/>
+    onclick="myFunction()"
 </div>
 -->
-<form>
     <label for="fname">First name:</label><br>
     <input class="test" type="text" id="fname" name="fname"><br>
     <label for="lname">Room Name:</label><br>
     <input class="test" type="text" id="lname" name="lname">
+    <button> Create Room</button>
 
-    <input type="button" onclick="myFunction()" value="Create Room">
-</form>
 
 </body>
 </html>
