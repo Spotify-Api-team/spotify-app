@@ -28,7 +28,7 @@ public class Room {
      * @param owner The owner of the room
      * @param id The room id
      */
-    public Room(@JsonProperty() Owner owner, int id) {
+    public Room(@JsonProperty("owner") Owner owner, @JsonProperty("id") int id) {
 
         this.owner = owner;
         this.id = id;

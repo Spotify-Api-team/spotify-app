@@ -1,5 +1,7 @@
 package com.Jukbox.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * Owners are the users that make the rooms
  * They likely need a spotify premium account
@@ -15,7 +17,7 @@ public class Owner{
      * create owner object
      * @param spotifyName spotify username
      */
-    public Owner(String spotifyName) {
+    public Owner(@JsonProperty("name") String spotifyName) {
         this.spotifyName = spotifyName;
     }
 
