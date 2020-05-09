@@ -15,7 +15,7 @@
                     contentType: "application/json",
                     url: "http://localhost:8080/controller/test",
                     dataType: 'json',
-                    data: {"name":"michael"}
+                    data: JSON.stringify({name:"michael"})
                 });
             });
         });
