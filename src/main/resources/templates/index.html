@@ -11,6 +11,8 @@
         $(document).ready(function() {
             $("Form").on("submit", function () {
 
+                console.log("console log working");
+
                 var that = $(this), //that reference current object we are working with
                     //url = that.attr('action'),
                     //type = that.attr('method'),
@@ -26,10 +28,13 @@
                     type: "POST",
                     contentType: "application/json",
                     url: "http://localhost:8080/createRoom",
-                    dataType: "json",
                     data: JSON.stringify(data),
                     success:function(response){
+                        console.log("success");
                         window.location.replace("http://localhost:8080/Room");
+                    },
+                    error:function(jqXhr, textStatus, errorMessage){
+                        console.log("error" + errorMessage);
                     }
                 });
                 return false;
@@ -41,7 +46,7 @@
 </head>
 <body>
     <h1 style="font-size:50px">JukBox</h1>
-    <Form action="http://localhost:8080/Room" method="POST" >
+    <Form method="POST" action="http://localhost:8080/Room"  >
         <label>Name:</label>
         <input type="text" name="fname"><br><br>
         <label>Spotify Username:</label>
