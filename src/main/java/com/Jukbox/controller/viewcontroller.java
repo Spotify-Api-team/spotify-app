@@ -11,4 +11,7 @@ public class viewcontroller {
     @RequestMapping("/") public String start(){
     return "index";   //thymeleaf expects the file index to be in the templates folder
     }
+    @RequestMapping("/Room") public String Startagain(){
+        return "index2";   //thymeleaf expects the file index to be in the templates folder
+    }
 }

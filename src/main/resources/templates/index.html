@@ -4,37 +4,50 @@
 
     <title>Spotify</title>
     <link rel="stylesheet" type="text/css" href="../css/custom.css">
-    <!--<script type="text.javascript" src="/js/custom.js"></script>-->
+   <!-- <script type="text.javascript" src="js/custom.js"></script>-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
     <script>
-        $(document).ready(function(){
-            $("button").click(function(){
+        $(document).ready(function() {
+            $("Form").on("submit", function () {
+
+                var that = $(this), //that reference current object we are working with
+                    //url = that.attr('action'),
+                    //type = that.attr('method'),
+                    data = {};
+
+                that.find("[name]").each(function (index, value) {
+                    var that = $(this),
+                        name = that.attr("name"),
+                        value = that.val();
+                    data[name] = value;
+                });
                 $.ajax({
                     type: "POST",
                     contentType: "application/json",
-                    url: "http://localhost:8080/controller/test",
-                    dataType: 'json',
-                    data: JSON.stringify({name:"michael"})
+                    url: "http://localhost:8080/createRoom",
+                    dataType: "json",
+                    data: JSON.stringify(data),
+                    success:function(response){
+                        window.location.replace("http://localhost:8080/Room");
+                    }
                 });
+                return false;
             });
         });
     </script>
+
+
 </head>
 <body>
-</body>
-<!-- test button
-<div>
-    <input type="button" id="bt1" class="button" value="ButtonTest"/>
-    onclick="myFunction()"
-</div>
--->
-    <label for="fname">First name:</label><br>
-    <input class="test" type="text" id="fname" name="fname"><br>
-    <label for="lname">Room Name:</label><br>
-    <input class="test" type="text" id="lname" name="lname">
-    <button> Create Room</button>
-
+    <h1 style="font-size:50px">JukBox</h1>
+    <Form action="http://localhost:8080/Room" method="POST" >
+        <label>Name:</label>
+        <input type="text" name="fname"><br><br>
+        <label>Spotify Username:</label>
+        <input type="text" name="sname"><br><br>
+        <input type="submit" value="Create Room">
+    </Form>
 
 </body>
 </html>

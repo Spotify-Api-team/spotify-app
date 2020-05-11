@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.sql.SQLOutput;
+
 @RequestMapping("/createRoom")
 @RestController
 public class RoomController {
@@ -20,6 +22,9 @@ public class RoomController {
     @PostMapping
     public void createNewRoom(@RequestBody Owner owner){
 
+        System.out.println("this is creating a new room");
+        System.out.println(owner.getSpotifyName());
+        System.out.println(owner.getFirstName());
         roomService.addRoom(owner);
 
     }

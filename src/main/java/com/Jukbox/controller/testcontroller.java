@@ -24,6 +24,8 @@ public class testcontroller {
     }
 
     @GetMapping
+    //possible call room service when trying to create a room view, put in a unique code
+    //
     public String getMember(){
 
         return "working";

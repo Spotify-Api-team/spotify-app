@@ -12,13 +12,16 @@ public class Owner{
 
     //spotify username
     private String spotifyName;
+    private String firstName;
 
     /**
      * create owner object
      * @param spotifyName spotify username
      */
-    public Owner(@JsonProperty("name") String spotifyName) {
+    public Owner(@JsonProperty("sname") String spotifyName, @JsonProperty("fname") String firstName) {
         this.spotifyName = spotifyName;
+        this.firstName=firstName;
+
     }
 
     /**
@@ -30,4 +33,7 @@ public class Owner{
         return spotifyName;
     }
 
+    public String getFirstName() {
+        return firstName;
+    }
 }
