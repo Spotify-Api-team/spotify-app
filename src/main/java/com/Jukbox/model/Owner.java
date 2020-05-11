@@ -36,4 +36,11 @@ public class Owner{
     public String getFirstName() {
         return firstName;
     }
+
+    public String toString() {
+        return "Owner{" +
+                "spotifyName='" + spotifyName + '\'' +
+                ", firstName='" + firstName + '\'' +
+                '}';
+    }
 }

@@ -18,16 +18,44 @@ public class RoomService {
 
     private ArrayList<Room> rooms;
 
-    private static int id;
+    private static int id = 1;
 
+    /**
+     * constructor of room service
+     */
     public RoomService(){
 
         rooms = new ArrayList<>();
     }
 
+    /**
+     * Creates a new room
+     * @param owner the creator of the room
+     */
     public void addRoom(Owner owner){
         rooms.add(new Room(owner, id));
         id++;
+    }
+
+    /**
+     *  Gets a room by its id number
+     * @param id the id of the room
+     * @return the room that is being looked for
+     */
+    public Room getRoomById(int id){
+
+        Room temp = new Room(null, id);
+        return rooms.get(rooms.indexOf(temp));
+
+    }
+
+    /**
+     * Get all the rooms available
+     * @return arraylist of all rooms
+     */
+    public ArrayList<Room> getRooms(){
+
+        return rooms;
     }
 
 
