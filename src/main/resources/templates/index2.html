@@ -6,9 +6,18 @@
     <title>index2</title>
 </head>
 <body>
-    <h1 style="font-size:50px">JukeBox Room View</h1>
-    <p th:text="${ownerName}"/>
-    <p th:text="${ownerSname}"/>
+
+    <div class="roomShow">
+        <h1 style="font-size:50px">JukeBox Room View</h1>
+        <label>Room:</label>
+        <div class="roomVal">
+            <p th:text="${ownerName}"/>
+        </div>
+        <label>Spotify Name:</label>
+        <div class="roomVal">
+            <p th:text="${ownerSname}"/>
+        </div>
+    </div>
 
 </body>
 </html>
