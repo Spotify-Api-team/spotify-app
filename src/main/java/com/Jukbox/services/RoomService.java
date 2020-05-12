@@ -1,10 +1,14 @@
 package com.Jukbox.services;
 
+import com.Jukbox.dao.RoomRepository;
 import com.Jukbox.model.Owner;
 import com.Jukbox.model.Room;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 /**
  * This will keep track of all the rooms
@@ -13,10 +17,11 @@ import java.util.ArrayList;
  *
  */
 
-@Repository
+@Service
 public class RoomService {
 
-    private ArrayList<Room> rooms;
+    @Autowired
+    private RoomRepository roomRepository;
 
     private static int id = 1;
 
@@ -25,7 +30,7 @@ public class RoomService {
      */
     public RoomService(){
 
-        rooms = new ArrayList<>();
+
     }
 
     /**
@@ -33,7 +38,7 @@ public class RoomService {
      * @param owner the creator of the room
      */
     public void addRoom(Owner owner){
-        rooms.add(new Room(owner, id));
+        roomRepository.save(new Room(owner, id));
         id++;
     }
 
@@ -42,10 +47,9 @@ public class RoomService {
      * @param id the id of the room
      * @return the room that is being looked for
      */
-    public Room getRoomById(int id){
+    public Optional<Room> getRoomById(int id){
 
-        Room temp = new Room(null, id);
-        return rooms.get(rooms.indexOf(temp));
+        return roomRepository.findById(id);
 
     }
 
@@ -53,9 +57,9 @@ public class RoomService {
      * Get all the rooms available
      * @return arraylist of all rooms
      */
-    public ArrayList<Room> getRooms(){
+    public List<Room> getRooms(){
 
-        return rooms;
+        return roomRepository.findAll();
     }
 
 

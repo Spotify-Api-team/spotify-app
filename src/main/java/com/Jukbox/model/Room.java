@@ -1,7 +1,10 @@
 package com.Jukbox.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.lang.annotation.Documented;
 import java.util.ArrayList;
 
 /**
@@ -11,12 +14,14 @@ import java.util.ArrayList;
  *
  */
 
+@Document(collection = "Rooms")
 public class Room {
 
     //list of members
     private ArrayList<Member> members;
 
     //id of the room
+    @Id
     private int id;
 
     //owner of the room
