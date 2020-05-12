@@ -28,6 +28,17 @@ public class Room {
     private Owner owner;
 
     /**
+     * Default Constructor
+     */
+    public Room() {
+
+        this.owner = null;
+        this.id = -1;
+        members = new ArrayList<>();
+
+    }
+
+    /**
      * Constructor for new room
      *
      * @param owner The owner of the room

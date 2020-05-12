@@ -19,6 +19,16 @@ input.button {
     font-size: 100px;
     display:block;
 }
+h1
+{
+    text-align: center;
+    background-color: Purple;
+}
+h3
+ {
+     text-align: center;
+     background-color: Green;
+ }
 
 form{
     background-color: yellow;
@@ -35,6 +45,4 @@ form input{
     margin:auto;
     font-size: 30px;
 }
-body {
-    background-color: lightblue;
-}
+

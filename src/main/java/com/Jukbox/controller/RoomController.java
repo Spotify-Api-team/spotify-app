@@ -5,6 +5,7 @@ import com.Jukbox.model.Room;
 import com.Jukbox.services.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.sql.SQLOutput;
@@ -24,7 +25,6 @@ public class RoomController {
         System.out.println(owner.getSpotifyName());
         System.out.println(owner.getFirstName());
         roomService.addRoom(owner);
-
     }
 
 }
