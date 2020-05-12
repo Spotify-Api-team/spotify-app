@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 /**
@@ -47,10 +48,9 @@ public class RoomService {
      * @param id the id of the room
      * @return the room that is being looked for
      */
-    public Optional<Room> getRoomById(int id){
-
-        return roomRepository.findById(id);
-
+    public Room getRoomById(int id){
+        
+        return roomRepository.findById(id).get();
     }
 
     /**
