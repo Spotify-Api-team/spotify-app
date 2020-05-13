@@ -69,7 +69,7 @@
                     data: JSON.stringify(data),
                     success:function(response){
                         console.log("success");
-                        window.location.replace("http://localhost:8080/Room");
+                        window.location.replace("http://localhost:8080/JoinRoom");
                     },
                     error:function(jqXhr, textStatus, errorMessage){
                         console.log("error" + errorMessage);
@@ -95,7 +95,7 @@
         <label>Name:</label>
         <input type="text" name="fname"><br><br>
         <label> Join Session:</label>
-        <input type="text" name="sessionID">
+        <input type="text" name="roomId">
         <input type="submit" value="Join Room">
 
     </Form>

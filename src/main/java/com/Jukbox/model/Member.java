@@ -5,18 +5,19 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class Member {
 
     private String name;
-    private String sessionID;
+    private int roomId;
 
-    public Member(@JsonProperty("fname") String name,@JsonProperty("sessionID")String sessionID) {
+    public Member(@JsonProperty("fname") String name,@JsonProperty("roomId")int roomId) {
         this.name = name;
-        this.sessionID=sessionID;
+        this.roomId= roomId;
     }
+
 
     public String getName() {
         return name;
     }
 
-    public String getSessionID() {
-        return sessionID;
+    public int getRoomId() {
+        return roomId;
     }
 }

@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import com.Jukbox.services.RoomService;
 import com.Jukbox.model.Room;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.Optional;
 
 
@@ -27,19 +29,36 @@ public class viewcontroller {
      * @param model
      * @return //return index found in templates
      */
-    
     @RequestMapping("/Room")
-    public String RoomView(Model model){
+    public String OwnerRoomView(Model model, HttpSession session){
 
-        Room temp = roomService.getRoomById(1);
+
+        Room temp = roomService.getRoomById( (int)session.getAttribute("roomId"));
+
 
         model.addAttribute("ownerName",temp.getOwner().getFirstName());
         model.addAttribute("ownerSname",temp.getOwner().getSpotifyName());
 
-        System.out.println(temp.getOwner().getFirstName());
-        System.out.println(temp.getOwner().getSpotifyName());
+        /*System.out.println(temp.getOwner().getFirstName());
+        System.out.println(temp.getOwner().getSpotifyName());*/
 
         return "index2";   //thymeleaf expects the file index to be in the templates folder
     }
+
+    @RequestMapping("/JoinRoom")
+    public String JoinRoomView(Model model, HttpSession session){
+
+
+        Room temp = roomService.getRoomById( (int)session.getAttribute("roomId"));
+
+
+        model.addAttribute("ownerName",temp.getOwner().getFirstName());
+        model.addAttribute("ownerSname",temp.getOwner().getSpotifyName());
+
+
+        return "index2";   //thymeleaf expects the file index to be in the templates folder
+    }
+
+
 
 }

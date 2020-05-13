@@ -2,6 +2,8 @@ package com.Jukbox.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import javax.servlet.http.HttpSession;
+
 /**
  * Owners are the users that make the rooms
  * They likely need a spotify premium account
@@ -14,6 +16,8 @@ public class Owner{
     private String spotifyName;
     private String firstName;
 
+    private HttpSession httpSession;
+
     /**
      * create owner object
      * @param spotifyName spotify username
@@ -21,6 +25,7 @@ public class Owner{
     public Owner(@JsonProperty("sname") String spotifyName, @JsonProperty("fname") String firstName) {
         this.spotifyName = spotifyName;
         this.firstName=firstName;
+        this.httpSession = null;
 
     }
 
@@ -37,10 +42,20 @@ public class Owner{
         return firstName;
     }
 
+    public HttpSession getHttpSession() {
+        return httpSession;
+    }
+
+    public void updateSession(HttpSession session){
+
+        HttpSession httpSession = session;
+    }
+
     public String toString() {
         return "Owner{" +
                 "spotifyName='" + spotifyName + '\'' +
                 ", firstName='" + firstName + '\'' +
                 '}';
     }
+
 }

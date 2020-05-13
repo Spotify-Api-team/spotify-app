@@ -5,13 +5,10 @@ import com.Jukbox.model.Member;
 import com.Jukbox.model.Owner;
 import com.Jukbox.model.Room;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mongodb.core.aggregation.ArrayOperators;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
 
 /**
  * This will keep track of all the rooms
@@ -40,9 +37,10 @@ public class RoomService {
      * Creates a new room
      * @param owner the creator of the room
      */
-    public void addRoom(Owner owner){
+    public int addRoom(Owner owner){
         roomRepository.save(new Room(owner, id));
         id++;
+        return id - 1;
     }
 
     /**
@@ -51,7 +49,7 @@ public class RoomService {
      * @return the room that is being looked for
      */
     public Room getRoomById(int id){
-        
+
         return roomRepository.findById(id).get();
     }
 
@@ -64,9 +62,22 @@ public class RoomService {
         return roomRepository.findAll();
     }
     public void updateRoom(Member member){
-        Room temp= roomRepository.findById(Integer.parseInt(member.getSessionID())).get();
+        Room temp= roomRepository.findById(member.getRoomId() ).get();
         temp.addMember(member);
         roomRepository.save(temp);
+    }
+
+    public Room getRoomFromSession(HttpSession httpSession){
+        List<Room> rooms = roomRepository.findAll();
+        for(Room i: rooms){
+
+            System.out.println(i.getOwner().getHttpSession());
+
+            if (i.getOwner().getHttpSession() == httpSession)
+                return i;
+        }
+
+        return null;
     }
 
 
