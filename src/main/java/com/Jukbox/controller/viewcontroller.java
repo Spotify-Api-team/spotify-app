@@ -42,8 +42,4 @@ public class viewcontroller {
         return "index2";   //thymeleaf expects the file index to be in the templates folder
     }
 
-
-
-
-
 }

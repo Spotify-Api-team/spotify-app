@@ -73,7 +73,7 @@ body {
     animation-direction: alternate;
 }
 
-form{
+form.one{
     background-color: yellow;
     position: center;
     padding:5px;
@@ -81,6 +81,15 @@ form{
     margin:auto;
     font-size: 60px;
 }
+form.two{
+    background-color: indianred;
+    position: center;
+    padding:5px;
+    top: 50%;
+    margin:auto;
+    font-size: 60px;
+}
+
 form input{
     background-color: white;
     position: center;

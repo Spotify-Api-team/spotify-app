@@ -1,9 +1,11 @@
 package com.Jukbox.services;
 
 import com.Jukbox.dao.RoomRepository;
+import com.Jukbox.model.Member;
 import com.Jukbox.model.Owner;
 import com.Jukbox.model.Room;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.aggregation.ArrayOperators;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
@@ -61,6 +63,12 @@ public class RoomService {
 
         return roomRepository.findAll();
     }
+    public void updateRoom(Member member){
+        Room temp= roomRepository.findById(Integer.parseInt(member.getSessionID())).get();
+        temp.addMember(member);
+        roomRepository.save(temp);
+    }
+
 
 
 }

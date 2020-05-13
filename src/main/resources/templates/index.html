@@ -7,9 +7,11 @@
    <!-- <script type="text.javascript" src="js/custom.js"></script>-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
+
+    <!-- ---------------first form---------------------- -->
     <script>
         $(document).ready(function() {
-            $("Form").on("submit", function () {
+            $("Form.one").on("submit", function () {
 
                 console.log("console log working");
 
@@ -42,16 +44,60 @@
         });
     </script>
 
+    <!-- ---------------second form---------------------- -->
+
+    <script>
+        $(document).ready(function() {
+            $("Form.two").on("submit", function () {
+
+
+                var that = $(this), //that reference current object we are working with
+                                    //url = that.attr('action'),
+                                    //type = that.attr('method'),
+                    data = {};
+
+                that.find("[name]").each(function (index, value) {
+                    var that = $(this),
+                        name = that.attr("name"),
+                        value = that.val();
+                    data[name] = value;
+                });
+                $.ajax({
+                    type: "POST",
+                    contentType: "application/json",
+                    url: "http://localhost:8080/joiningRoom",
+                    data: JSON.stringify(data),
+                    success:function(response){
+                        console.log("success");
+                        window.location.replace("http://localhost:8080/Room");
+                    },
+                    error:function(jqXhr, textStatus, errorMessage){
+                        console.log("error" + errorMessage);
+                    }
+                });
+                return false;
+            });
+        });
+    </script>
+
 
 </head>
 <body>
     <h1 style="font-size:50px">JukBox</h1>
-    <Form method="POST" action="http://localhost:8080/Room"  >
+    <Form class="one" method="POST" action="http://localhost:8080/Room"  >
         <label>Name:</label>
         <input type="text" name="fname"><br><br>
         <label>Spotify Username:</label>
-        <input type="text" name="sname"><br><br>
+        <input type="text" name="sname">
         <input type="submit" value="Create Room">
+    </Form>
+    <Form class="two">
+        <label>Name:</label>
+        <input type="text" name="fname"><br><br>
+        <label> Join Session:</label>
+        <input type="text" name="sessionID">
+        <input type="submit" value="Join Room">
+
     </Form>
 
 </body>
