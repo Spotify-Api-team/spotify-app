@@ -4,6 +4,7 @@ import com.Jukbox.dao.RoomRepository;
 import com.Jukbox.model.Member;
 import com.Jukbox.model.Owner;
 import com.Jukbox.model.Room;
+import com.Jukbox.config.GeneratePassword;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,7 +39,14 @@ public class RoomService {
      * @param owner the creator of the room
      */
     public int addRoom(Owner owner){
-        roomRepository.save(new Room(owner, id));
+
+        //create Password
+        String roomPassword;
+        roomPassword=GeneratePassword.createPassword();
+
+        //verify password is unique
+
+        roomRepository.save(new Room(owner,id,roomPassword));
         id++;
         return id - 1;
     }
@@ -62,7 +70,10 @@ public class RoomService {
         return roomRepository.findAll();
     }
     public void updateRoom(Member member){
-        Room temp= roomRepository.findById(member.getRoomId() ).get();
+
+        //where is findID?
+
+        Room temp= roomRepository.findById(member.getMemberPassword() ).get();
         temp.addMember(member);
         roomRepository.save(temp);
     }

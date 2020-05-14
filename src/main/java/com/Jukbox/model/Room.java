@@ -27,6 +27,9 @@ public class Room {
     //owner of the room
     private Owner owner;
 
+    //password to room
+    private String roomPassword;
+
     /**
      * Default Constructor
      */
@@ -35,6 +38,7 @@ public class Room {
         this.owner = null;
         this.id = -1;
         members = new ArrayList<>();
+        this.roomPassword = "none";
 
     }
 
@@ -45,12 +49,12 @@ public class Room {
      * @param id The room id
      */
 
-    public Room(@JsonProperty("owner") Owner owner, @JsonProperty("id") int id) {
+    public Room(@JsonProperty("owner") Owner owner, @JsonProperty("id") int id, String roomPassword) {
 
         this.owner = owner;
         this.id = id;
         members = new ArrayList<>();
-
+        this.roomPassword = roomPassword;
     }
 
     /**
@@ -87,6 +91,13 @@ public class Room {
         return this.owner;
     }
 
+    /**
+     * get the password for the room, to be used by members
+     * @return roomPassword
+     */
+    public String getRoomPassword() {
+        return roomPassword;
+    }
 
     /**
      * checks if two rooms are equal if the ids are the same
@@ -108,4 +119,6 @@ public class Room {
                 ", owner=" + owner +
                 '}';
     }
+
+
 }

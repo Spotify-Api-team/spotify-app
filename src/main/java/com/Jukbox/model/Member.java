@@ -5,11 +5,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class Member {
 
     private String name;
-    private int roomId;
+    private String memberPassword;
 
-    public Member(@JsonProperty("fname") String name,@JsonProperty("roomId")int roomId) {
+
+    public Member(@JsonProperty("fname") String name, @JsonProperty("memberPassword") String memberPassword) {
         this.name = name;
-        this.roomId= roomId;
+        this.memberPassword = memberPassword;
     }
 
 
@@ -17,7 +18,9 @@ public class Member {
         return name;
     }
 
-    public int getRoomId() {
-        return roomId;
+    public String getMemberPassword() {
+        return memberPassword;
     }
 }
+
+

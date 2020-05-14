@@ -27,8 +27,9 @@ public class RoomController {
         System.out.println("this is creating a new room");
         /*System.out.println(owner.getSpotifyName());
         System.out.println(owner.getFirstName());*/
-
         int id = roomService.addRoom(owner);
+
+
         session.setAttribute("roomId", id);
     }
 
