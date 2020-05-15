@@ -66,14 +66,19 @@ public class RoomService {
      * @return arraylist of all rooms
      */
     public List<Room> getRooms(){
-
         return roomRepository.findAll();
+
+    }
+    public Room findByPassword(String roomPassword){
+        return roomRepository.findByRoomPassword(roomPassword).get();
     }
     public void updateRoom(Member member){
 
-        //where is findID?
 
-        Room temp= roomRepository.findById(member.getMemberPassword() ).get();
+
+        //where is findID?
+        //data base query
+        Room temp= findByPassword(member.getMemberPassword());
         temp.addMember(member);
         roomRepository.save(temp);
     }
