@@ -32,6 +32,8 @@ public class viewcontroller {
     @RequestMapping("/Room")
     public String OwnerRoomView(Model model, HttpSession session){
 
+        //return "spotifyTestSDK";
+
 
         Room temp = roomService.getRoomById( (int)session.getAttribute("roomId"));
 
