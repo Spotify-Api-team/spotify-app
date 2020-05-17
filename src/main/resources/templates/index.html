@@ -33,7 +33,15 @@
                     data: JSON.stringify(data),
                     success:function(response){
                         console.log("success");
-                        window.location.replace("http://localhost:8080/Room");
+
+                        //spotify login if post is successful
+                        var params = {
+                            response_type: "code",
+                            client_id: "b1e9cb8d5176473fb39f5e7aca4eaae9",
+                            redirect_uri: "http://localhost:8080/Room"
+                        };
+                        window.location.replace('https://accounts.spotify.com/authorize?' +
+                            $.param(params) );
                     },
                     error:function(jqXhr, textStatus, errorMessage){
                         console.log("error" + errorMessage);
@@ -80,6 +88,8 @@
         });
     </script>
 
+
+
 </head>
 <body>
 
@@ -99,6 +109,7 @@
         <input type="submit" value="Join Room">
 
     </Form>
+
 
 </body>
 </html>
