@@ -45,65 +45,41 @@
 
     // need authorization code to get access token
 
-        var queryString = window.location.search;
-        var urlParams = new URLSearchParams(queryString);
-        var code = urlParams.get("code");
+         var queryString = window.location.search;
+         var urlParams = new URLSearchParams(queryString);
+         var code = urlParams.get("code");
 
-        console.log(code);
+         console.log(code);
 
 
-        //our apps data
-        var clientId = 'b1e9cb8d5176473fb39f5e7aca4eaae9';
-        var clientSecret = '4589c5631d33441199f7722186905fe0';
-        //Base 64 encoded string that contains
-        var encodedData = window.btoa(clientId + ':' + clientSecret);
+         //our apps data
+         var clientId = 'b1e9cb8d5176473fb39f5e7aca4eaae9';
+         var clientSecret = '4589c5631d33441199f7722186905fe0';
+         //Base 64 encoded string that contains
+         var encodedData = window.btoa(clientId + ':' + clientSecret);
 
-        $.ajax({
-            type: "POST",
-            contentType: 'application/x-www-form-urlencoded', //input
-            dataType: "json", //output
-            url: 'https://accounts.spotify.com/api/token',
-            headers: {
-                'Authorization': 'Basic ' + encodedData
-            },
-            data: $.param({   //puts in form of application/x-www-form-urlencoded
-                code: code,
-                redirect_uri: 'http://localhost:8080/Room',
-                grant_type: 'authorization_code'
-            }),
-            success: function (response) {
-                console.log(response);
-
-                //set global variable
-                window.token = response.access_token;
-                window.refreshtoken= response.refresh_token;
-                console.log(token);
-
-                //window.location.replace("http://localhost:8080/Room");
-            },
-            error: function (jqXhr, textStatus, errorMessage) {
-                console.log("error" + errorMessage);
-
-            }
-        });
-
-     /* Comment start! --NEED WORK
-     var intervalID = window.setInterval(refreshToken, 5);
-
-     //https://developer.spotify.com/documentation/ios/guides/token-swap-and-refresh/
-     function refreshToken(){
          $.ajax({
              type: "POST",
+             contentType: 'application/x-www-form-urlencoded', //input
              dataType: "json", //output
-             url: 'https://example.com/v1/refresh',
+             url: 'https://accounts.spotify.com/api/token',
              headers: {
-                 "Content-Type": "application/x-www-form-urlencoded"
+                 'Authorization': 'Basic ' + encodedData
              },
-             data: JSON.stringify({
-                 refresh_token: window.refreshtoken
+             data: $.param({   //puts in form of application/x-www-form-urlencoded
+                 code: code,
+                 redirect_uri: 'http://localhost:8080/Room',
+                 grant_type: 'authorization_code'
              }),
              success: function (response) {
                  console.log(response);
+
+                 //set global variable
+                 window.token= response.access_token;
+                 window.refreshtoken = response.refresh_token;
+                 console.log(window.token)
+                 console.log(window.refreshtoken);
+
                  //window.location.replace("http://localhost:8080/Room");
              },
              error: function (jqXhr, textStatus, errorMessage) {
@@ -111,9 +87,32 @@
 
              }
          });
+
+
+
+     //var intervalID = window.setInterval(refreshToken, 180);
+
+     //https://developer.spotify.com/documentation/ios/guides/token-swap-and-refresh/
+     function refreshToken(){
+         $.ajax({
+             type: "POST",
+             dataType: "json", //output
+             url: 'https://example.com/v1/refresh',
+             data: $.param({
+                 refresh_token: 'AQB0hpeWnDOiKomhfOG5mSk4zLT5QAjdZGIHqToHi_xK24az_uqMXav1VASLUBYoE61AYCIQVQbZKLeDHBIjYe4rnBbq3mXSnberqaHvFmGqqkSpATKeLTzVtGA_LR1BdwI'
+             }),
+             success: function (response) {
+                 console.log(response);
+                 //window.location.replace("http://localhost:8080/Room");
+             },
+             error: function (jqXhr, textStatus, errorMessage) {
+                 console.log("error111111" + errorMessage);
+
+             }
+         });
      }
 
-     */
+
      /* Comment start! --getting back user info
      getUserData(window.token);
      function getUserData(accessToken) {
