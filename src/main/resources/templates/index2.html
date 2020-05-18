@@ -4,72 +4,11 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="../css/custom.css">
     <title>index2</title>
-
-    <!-- -------------- sign in ----------------
-    <script>
-        function signIn(){
-            $.ajax({
-                type: "GET",
-                url: "https://accounts.spotify.com/authorize?client_id=b1e9cb8d5176473fb39f5e7aca4eaae9&response_type=code&redirect_uri=http://localhost:8080/Room",
-                success:function(response){
-                    console.log("success");
-                },
-                error:function(jqXhr, textStatus, errorMessage){
-                    console.log("error" + errorMessage);
-                }
-            });
-        }
-    </script>
-    <script>
-        $(document).ready(function(){
-            $('#testButton').click(function(){
-
-                $.ajax({
-                    type: "GET",
-                    url: "https://accounts.spotify.com/authorize?client_id=b1e9cb8d5176473fb39f5e7aca4eaae9&response_type=code&redirect_uri=http://localhost:8080/Room",
-                    success:function(response){
-                        console.log("success");
-                    },
-                    error:function(jqXhr, textStatus, errorMessage){
-                        console.log("error" + errorMessage);
-                    }
-                });
-
-            });
-        });
-    </script>-->
-    <script>
-        $(document).ready(function(){
-            $("button").on('click',function() {
-
-               // var provider_url = "https://accounts.spotify.com/authorize"
-                window.location.replace("http://localhost:8080/");
-                var params = encodeURIComponent({
-                    'client_id': 'b1e9cb8d5176473fb39f5e7aca4eaae9',
-                    'response_type': 'code',
-                    'redirect_uri': 'http://localhost:8080/SpotifyWorks',
-
-                })
-                //var client_id= encodeURIComponent('b1e9cb8d5176473fb39f5e7aca4eaae9');
-                //var response_type= encodeURIComponent('code');
-               // var redirect_uri= encodeURIComponent('b1e9cb8d5176473fb39f5e7aca4eaae9');
-
-               // var url = provider_url + '?' + params
-               // console.log(provider_url.concat(params));
-                console.log(encodeURIComponent("https://accounts.spotify.com/authorize?client_id=b1e9cb8d5176473fb39f5e7aca4eaae9&response_type=code&redirect_uri=http://localhost:8080/Room"));
-
-                //THIS IS THE ENCODED URI
-                //https://accounts.spotify.com/authorize?client_id%3Db1e9cb8d5176473fb39f5e7aca4eaae9%26response_type%3Dcode%26redirect_uri%3Dhttp%3A%2F%2Flocalhost%3A8080%2FRoom
-
-    </script>
-
-    <!-- ----------------------- end ---------------------- -->
-
 </head>
 <body>
 
     <div class="roomShow">
-        <button id="testButton">Sign into Spotify</button>
+        <!--<button id="testButton">Sign into Spotify</button>-->
         <h1 style="font-size:50px">JukeBox Room View</h1>
         <label>Room:</label>
         <div class="roomVal">
@@ -85,8 +24,11 @@
 
     <!-- ----------------- api playback -------------------- -->
     <script src="https://sdk.scdn.co/spotify-player.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script>
 
+
+     //could be use for future
     function getUrlVars(){
         var vars = [], hash;
         var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
@@ -96,17 +38,99 @@
             vars.push(hash[0]);
             vars[hash[0]] = hash[1];
         }
+        console.log(vars);
         return vars;
     }
 
-    console.log(getUrlVars());
+
+    // need authorization code to get access token
+
+        var queryString = window.location.search;
+        var urlParams = new URLSearchParams(queryString);
+        var code = urlParams.get("code");
+
+        console.log(code);
+
+
+        //our apps data
+        var clientId = 'b1e9cb8d5176473fb39f5e7aca4eaae9';
+        var clientSecret = '4589c5631d33441199f7722186905fe0';
+        //Base 64 encoded string that contains
+        var encodedData = window.btoa(clientId + ':' + clientSecret);
+
+        $.ajax({
+            type: "POST",
+            contentType: 'application/x-www-form-urlencoded', //input
+            dataType: "json", //output
+            url: 'https://accounts.spotify.com/api/token',
+            headers: {
+                'Authorization': 'Basic ' + encodedData
+            },
+            data: $.param({   //puts in form of application/x-www-form-urlencoded
+                code: code,
+                redirect_uri: 'http://localhost:8080/Room',
+                grant_type: 'authorization_code'
+            }),
+            success: function (response) {
+                console.log(response);
+
+                //set global variable
+                window.token = response.access_token;
+                window.refreshtoken= response.refresh_token;
+                console.log(token);
+
+                //window.location.replace("http://localhost:8080/Room");
+            },
+            error: function (jqXhr, textStatus, errorMessage) {
+                console.log("error" + errorMessage);
+
+            }
+        });
+
+     /* Comment start! --NEED WORK
+     var intervalID = window.setInterval(refreshToken, 5);
+
+     //https://developer.spotify.com/documentation/ios/guides/token-swap-and-refresh/
+     function refreshToken(){
+         $.ajax({
+             type: "POST",
+             dataType: "json", //output
+             url: 'https://example.com/v1/refresh',
+             headers: {
+                 "Content-Type": "application/x-www-form-urlencoded"
+             },
+             data: JSON.stringify({
+                 refresh_token: window.refreshtoken
+             }),
+             success: function (response) {
+                 console.log(response);
+                 //window.location.replace("http://localhost:8080/Room");
+             },
+             error: function (jqXhr, textStatus, errorMessage) {
+                 console.log("error" + errorMessage);
+
+             }
+         });
+     }
+
+     */
+     /* Comment start! --getting back user info
+     getUserData(window.token);
+     function getUserData(accessToken) {
+         return $.ajax({
+             url: 'https://api.spotify.com/v1/me',
+             headers: {
+                 'Authorization': 'Bearer ' + accessToken
+             }
+         });
+     }*/
+
 
 
     window.onSpotifyWebPlaybackSDKReady = () => {
-      const token = 'BQDcv4PO94GWgH7_pqfJhREUvgmwVdRdk_wEJ42v4dT04xMUGINAcpd285wXeBfdSeVSweB-qlSO5OLbm6o_rgZxi17oBvi4zsekd1BB0n1BULVWpcHI2lsbukUV4sg8UtiKQBhuaGdOCqD3KzZ4ISH-kGAoSxwMiGraRHrcAHmO';
       const player = new Spotify.Player({
         name: 'Jukbox',
-        getOAuthToken: cb => { cb(token); }
+        getOAuthToken: cb => { cb(window.token); }
       });
 
       // Error handling
@@ -131,7 +155,7 @@
       // Connect to the player!
       player.connect();
     };
-  </script>
+   </script>
   <!-- ------------- end ------------- -->
 
 
