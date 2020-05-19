@@ -1,6 +1,6 @@
 
 
-//could be use for future
+/*could be use for future
 function getUrlVars(){
     var vars = [], hash;
     var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
@@ -13,9 +13,11 @@ function getUrlVars(){
     console.log(vars);
     return vars;
 }
+*/
 
 
-// need authorization code to get access token
+
+
 
 var queryString = window.location.search;
 var urlParams = new URLSearchParams(queryString);
@@ -27,8 +29,12 @@ console.log(code);
 //our apps data
 var clientId = 'b1e9cb8d5176473fb39f5e7aca4eaae9';
 var clientSecret = '4589c5631d33441199f7722186905fe0';
+
 //Base 64 encoded string that contains
 var encodedData = window.btoa(clientId + ':' + clientSecret);
+
+
+var intervalID = window.setInterval(refreshToken, 3300000);
 
 $.ajax({
     type: "POST",
@@ -55,37 +61,41 @@ $.ajax({
         //window.location.replace("http://localhost:8080/Room");
     },
     error: function (jqXhr, textStatus, errorMessage) {
-        console.log("error" + errorMessage);
+        console.log("errorToken" + errorMessage);
 
     }
 });
 
 
 
-//var intervalID = window.setInterval(refreshToken, 180);
+
 
 //https://developer.spotify.com/documentation/ios/guides/token-swap-and-refresh/
 function refreshToken(){
     $.ajax({
         type: "POST",
         dataType: "json", //output
-        url: 'https://example.com/v1/refresh',
+        url: 'https://accounts.spotify.com/api/token',
+        headers:{
+            'Authorization': 'Basic ' + encodedData
+        },
         data: $.param({
-            refresh_token: 'AQB0hpeWnDOiKomhfOG5mSk4zLT5QAjdZGIHqToHi_xK24az_uqMXav1VASLUBYoE61AYCIQVQbZKLeDHBIjYe4rnBbq3mXSnberqaHvFmGqqkSpATKeLTzVtGA_LR1BdwI'
+            grant_type: 'refresh_token',
+            refresh_token: window.refreshtoken
         }),
         success: function (response) {
             console.log(response);
-            //window.location.replace("http://localhost:8080/Room");
+            window.token= response.access_token;
         },
         error: function (jqXhr, textStatus, errorMessage) {
-            console.log("error" + errorMessage);
+            console.log("errorRefreshToken" + errorMessage);
 
         }
     });
 }
 
 
-/* Comment start! --getting back user info
+
 getUserData(window.token);
 function getUserData(accessToken) {
     return $.ajax({
@@ -94,10 +104,10 @@ function getUserData(accessToken) {
             'Authorization': 'Bearer ' + accessToken
         }
     });
-}*/
+}
 
 
-
+//intilizies that browser has a spotify device
 window.onSpotifyWebPlaybackSDKReady = () => {
     const player = new Spotify.Player({
         name: 'Jukbox',

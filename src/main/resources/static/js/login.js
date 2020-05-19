@@ -28,9 +28,10 @@ function testF() {
                         response_type: "code",
                         client_id: "b1e9cb8d5176473fb39f5e7aca4eaae9",
                         redirect_uri: "http://localhost:8080/Room",
-                        scope: "streaming user-read-email user-read-private"
+                        scope: "streaming user-read-email user-read-private",
+                        show_dialog: "true"
                     };
-                    window.location ='https://accounts.spotify.com/authorize?' +
+                    window.location = 'https://accounts.spotify.com/authorize?' +
                         $.param(params);
                 },
                 error: function (jqXhr, textStatus, errorMessage) {
@@ -40,9 +41,9 @@ function testF() {
             return false;
         });
     });
-}
 
-    $(document).ready(function() {
+
+    $(document).ready(function () {
         $("Form.two").on("submit", function () {
 
 
@@ -62,14 +63,16 @@ function testF() {
                 contentType: "application/json",
                 url: "http://localhost:8080/joiningRoom",
                 data: JSON.stringify(data),
-                success:function(response){
+                success: function (response) {
                     console.log("success");
                     window.location.replace("http://localhost:8080/JoinRoom");
                 },
-                error:function(jqXhr, textStatus, errorMessage){
+                error: function (jqXhr, textStatus, errorMessage) {
                     console.log("error" + errorMessage);
                 }
             });
             return false;
         });
     });
+
+}

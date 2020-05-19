@@ -72,15 +72,16 @@ public class RoomService {
     public Room findByPassword(String roomPassword){
         return roomRepository.findByRoomPassword(roomPassword).get();
     }
-    public void updateRoom(Member member){
-
-
-
+    public int updateRoom(Member member){
         //where is findID?
         //data base query
+
+        //check the data base for the memember password that the memeber inputted
         Room temp= findByPassword(member.getMemberPassword());
         temp.addMember(member);
         roomRepository.save(temp);
+
+        return temp.getId();
     }
 
     public Room getRoomFromSession(HttpSession httpSession){

@@ -9,21 +9,30 @@
     <script src="https://sdk.scdn.co/spotify-player.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src=" ../js/token.js"></script>
-    
+
 </head>
 <body>
 
     <div class="roomShow">
         <!--<button id="testButton">Sign into Spotify</button>-->
-        <h1 style="font-size:50px">JukeBox Room View</h1>
+        <h1 style="font-size:50px">JukBox Room View</h1>
+
         <label>Room:</label>
         <div class="roomVal">
             <p th:text="${ownerName}"/>
         </div>
+
         <label>Spotify Name:</label>
         <div class="roomVal">
             <p th:text="${ownerSname}"/>
         </div>
+
+        <label>Room Password:</label>
+        <div class="roomVal">
+            <p th:text="${roomPassword}"/>
+        </div>
+
+
     </div>
 
 </body>
