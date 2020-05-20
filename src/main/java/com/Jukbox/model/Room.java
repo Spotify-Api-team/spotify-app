@@ -3,14 +3,12 @@ package com.Jukbox.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-
-import java.lang.annotation.Documented;
 import java.util.ArrayList;
 
 /**
  * Object that represents the room or lobby that users will join to listen to music
- * Owner creates the room and must have spotify account
- * Members join with the room id
+ * Owner creates the room and must have spotify premium account
+ * Members join with the room password
  *
  */
 
