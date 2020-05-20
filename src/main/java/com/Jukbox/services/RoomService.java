@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -24,7 +25,9 @@ public class RoomService {
     @Autowired
     private RoomRepository roomRepository;
 
-    private static int id = 1;
+    private static int roomId = 1;
+
+    private static int memberId = 1;
 
     /**
      * constructor of room service
@@ -46,9 +49,9 @@ public class RoomService {
 
         //verify password is unique
 
-        roomRepository.save(new Room(owner,id,roomPassword));
-        id++;
-        return id - 1;
+        roomRepository.save(new Room(owner,roomId,roomPassword));
+        roomId++;
+        return roomId - 1;
     }
 
     /**
@@ -59,6 +62,28 @@ public class RoomService {
     public Room getRoomById(int id){
 
         return roomRepository.findById(id).get();
+    }
+
+    /*
+    public Member getMemberById(int id){
+        Member temp= new Member();
+        temp.setId(id);
+
+        return roomRepository.findMembersById(id).get();
+    }
+    */
+
+    /**
+     *
+     * @param room
+     * @param id
+     * @return the correct memeber inside of the correct roomId
+     */
+    public Member getMemberByIdandRoom(Room room, int id){
+        ArrayList<Member> list = room.getMembers();
+        Member temp = new Member();
+        temp.setId(id);
+        return list.get(list.indexOf(temp));
     }
 
     /**
@@ -78,6 +103,10 @@ public class RoomService {
 
         //check the data base for the memember password that the memeber inputted
         Room temp= findByPassword(member.getMemberPassword());
+
+        member.setId(memberId);
+        memberId++;
+
         temp.addMember(member);
         roomRepository.save(temp);
 

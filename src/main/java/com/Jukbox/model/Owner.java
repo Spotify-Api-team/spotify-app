@@ -13,33 +13,34 @@ import javax.servlet.http.HttpSession;
 public class Owner{
 
     //spotify username
-    private String spotifyName;
+    private String roomName;
     private String firstName;
 
     private HttpSession httpSession;
 
     /**
      * create owner object
-     * @param spotifyName spotify username
+     * @param roomName Room's anme
      */
-    public Owner(@JsonProperty("sname") String spotifyName, @JsonProperty("fname") String firstName) {
-        this.spotifyName = spotifyName;
+    public Owner(@JsonProperty("roomName") String roomName, @JsonProperty("fname") String firstName) {
+        this.roomName = roomName;
         this.firstName=firstName;
         this.httpSession = null;
 
+    }
+
+    public String getFirstName() {
+        return firstName;
     }
 
     /**
      * get the spotify name
      * @return spotify username
      */
-    public String getSpotifyName(){
 
-        return spotifyName;
-    }
 
-    public String getFirstName() {
-        return firstName;
+    public String getRoomName() {
+        return roomName;
     }
 
     public HttpSession getHttpSession() {
@@ -53,7 +54,7 @@ public class Owner{
 
     public String toString() {
         return "Owner{" +
-                "spotifyName='" + spotifyName + '\'' +
+                "roomName='" + roomName + '\'' +
                 ", firstName='" + firstName + '\'' +
                 '}';
     }

@@ -1,5 +1,6 @@
 package com.Jukbox.controller;
 
+import com.Jukbox.model.Member;
 import com.Jukbox.services.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -35,7 +36,7 @@ public class viewcontroller {
 
 
         model.addAttribute("ownerName",temp.getOwner().getFirstName());
-        model.addAttribute("ownerSname",temp.getOwner().getSpotifyName());
+        model.addAttribute("roomName",temp.getOwner().getRoomName());
 
         //room password
         model.addAttribute("roomPassword", temp.getRoomPassword());
@@ -45,7 +46,7 @@ public class viewcontroller {
         /*System.out.println(temp.getOwner().getFirstName());
         System.out.println(temp.getOwner().getSpotifyName());*/
 
-        return "index2";   //thymeleaf expects the file index to be in the templates folder
+        return "owner";   //thymeleaf expects the file index to be in the templates folder
     }
 
     @RequestMapping("/JoinRoom")
@@ -53,15 +54,16 @@ public class viewcontroller {
 
 
         Room temp = roomService.getRoomById( (int)session.getAttribute("roomId"));
+        Member tempMem = roomService.getMemberByIdandRoom(temp,(int)session.getAttribute("memberId"));
 
+        System.out.println(tempMem.getName());
 
         model.addAttribute("ownerName",temp.getOwner().getFirstName());
-        model.addAttribute("ownerSname",temp.getOwner().getSpotifyName());
+        model.addAttribute("roomName",temp.getOwner().getRoomName());
         model.addAttribute("roomPassword", temp.getRoomPassword());
+        model.addAttribute("memberName", tempMem.getName());
 
-
-
-        return "index2";   //thymeleaf expects the file index to be in the templates folder
+        return "member";   //thymeleaf expects the file index to be in the templates folder
     }
 
 
