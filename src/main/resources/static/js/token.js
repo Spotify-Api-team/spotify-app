@@ -15,10 +15,6 @@ function getUrlVars(){
 }
 */
 
-
-
-
-
 var queryString = window.location.search;
 var urlParams = new URLSearchParams(queryString);
 var code = urlParams.get("code");
@@ -32,8 +28,6 @@ var clientSecret = '4589c5631d33441199f7722186905fe0';
 
 //Base 64 encoded string that contains
 var encodedData = window.btoa(clientId + ':' + clientSecret);
-
-
 var intervalID = window.setInterval(refreshToken, 3300000);
 
 $.ajax({
@@ -122,7 +116,6 @@ function getUserData(accessToken) {
 }
 
 function getToken(){
-
     return window.token;
 }
 
@@ -146,6 +139,20 @@ window.onSpotifyWebPlaybackSDKReady = () => {
     // Ready
     player.addListener('ready', ({ device_id }) => {
         console.log('Ready with Device ID', device_id);
+
+        //post device id to java spring
+        $.ajax({
+            type: "POST",
+            url: "http://localhost:8080/getId",
+            dataType: "text",
+            data: device_id,
+            success: function(response){
+                window.token = response
+            }
+
+        })
+
+
     });
 
     // Not Ready
@@ -155,4 +162,10 @@ window.onSpotifyWebPlaybackSDKReady = () => {
 
     // Connect to the player!
     player.connect();
+
+
+
+
+
 };
+
