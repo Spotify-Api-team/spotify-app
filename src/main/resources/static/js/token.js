@@ -55,8 +55,23 @@ $.ajax({
         //set global variable
         window.token= response.access_token;
         window.refreshtoken = response.refresh_token;
-        console.log(window.token)
+        console.log(window.token);
         console.log(window.refreshtoken);
+
+        data = {
+        "token": window.token
+        };
+
+        $.ajax({
+            type: "POST",
+            url: "http://localhost:8080/token",
+            contentType: "application/Json",
+            data: window.token,
+            error: function (jqXhr, textStatus, errorMessage) {
+                                console.log("error" + errorMessage);
+            }
+        });
+
 
         //window.location.replace("http://localhost:8080/Room");
     },
@@ -104,6 +119,11 @@ function getUserData(accessToken) {
             'Authorization': 'Bearer ' + accessToken
         }
     });
+}
+
+function getToken(){
+
+    return window.token;
 }
 
 

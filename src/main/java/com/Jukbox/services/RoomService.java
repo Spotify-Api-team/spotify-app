@@ -34,7 +34,6 @@ public class RoomService {
      */
     public RoomService(){
 
-
     }
 
     /**
@@ -94,9 +93,12 @@ public class RoomService {
         return roomRepository.findAll();
 
     }
+
     public Room findByPassword(String roomPassword){
         return roomRepository.findByRoomPassword(roomPassword).get();
     }
+
+
     public int updateRoom(Member member){
         //where is findID?
         //data base query
@@ -124,6 +126,17 @@ public class RoomService {
         }
 
         return null;
+    }
+
+
+    public void addSpotifyToken(String token, int id){
+
+        Room room = roomRepository.findById(id).get();
+        room.getOwner().setSpotifyToken(token);
+        roomRepository.save(room);
+
+
+
     }
 
 

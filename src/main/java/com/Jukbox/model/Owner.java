@@ -12,11 +12,10 @@ import javax.servlet.http.HttpSession;
  */
 public class Owner{
 
-    //spotify username
     private String roomName;
     private String firstName;
-
     private HttpSession httpSession;
+    private String spotifyToken;
 
     /**
      * create owner object
@@ -29,29 +28,58 @@ public class Owner{
 
     }
 
+    public void setSpotifyToken(String token){
+
+        this.spotifyToken = token;
+    }
+
+    /**
+     * get name of owner
+     * @return name
+     */
     public String getFirstName() {
         return firstName;
     }
 
     /**
-     * get the spotify name
-     * @return spotify username
+     * get the room name the owner created
+     * @return String name of the room
      */
-
-
     public String getRoomName() {
         return roomName;
     }
 
+    /**
+     * Get the session of the owner
+     * @return Httpsession from owner
+     */
     public HttpSession getHttpSession() {
         return httpSession;
     }
 
+    /**
+     * Get token of the owner
+     * @return owners spotify token
+     */
+    public String getSpotifyToken() {
+        return spotifyToken;
+    }
+
+    /**
+     * udate the session
+     *
+     * @param session the sessiom change to
+     */
     public void updateSession(HttpSession session){
 
         HttpSession httpSession = session;
     }
 
+
+    /**
+     * to string method
+     * @return
+     */
     public String toString() {
         return "Owner{" +
                 "roomName='" + roomName + '\'' +
