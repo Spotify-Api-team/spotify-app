@@ -143,16 +143,13 @@ window.onSpotifyWebPlaybackSDKReady = () => {
         //post device id to java spring
         $.ajax({
             type: "POST",
-            url: "http://localhost:8080/getId",
-            dataType: "text",
+            url: "http://localhost:8080/deviceId",
+            contentType: "text/plain",
             data: device_id,
             success: function(response){
-                window.token = response
+               console.log("sent deviceId");
             }
-
         })
-
-
     });
 
     // Not Ready
@@ -162,10 +159,6 @@ window.onSpotifyWebPlaybackSDKReady = () => {
 
     // Connect to the player!
     player.connect();
-
-
-
-
 
 };
 

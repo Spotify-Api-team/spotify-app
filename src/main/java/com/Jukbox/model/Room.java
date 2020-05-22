@@ -28,6 +28,9 @@ public class Room {
     //password to room
     private String roomPassword;
 
+    private String deviceId;
+
+
     /**
      * Default Constructor
      */
@@ -95,6 +98,23 @@ public class Room {
      */
     public String getRoomPassword() {
         return roomPassword;
+    }
+
+
+    /**
+     * sets a rooms deviceId
+     * @param deviceId deviceid of owners playback
+     */
+    public void setDeviceId(String deviceId) {
+        this.deviceId = deviceId;
+    }
+
+    /**
+     * gets a rooms device Id
+     * @return the rooms device Id
+     */
+    public String getDeviceId() {
+        return deviceId;
     }
 
     /**

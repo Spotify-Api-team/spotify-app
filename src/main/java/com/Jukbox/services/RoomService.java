@@ -140,5 +140,13 @@ public class RoomService {
     }
 
 
+    public void addDeviceId(String deviceId, int id){
+
+        Room room = roomRepository.findById(id).get();
+        room.setDeviceId(deviceId);
+        roomRepository.save(room);
+
+    }
+
 
 }
