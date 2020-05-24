@@ -66,6 +66,14 @@ public class viewcontroller {
         return "member";   //thymeleaf expects the file index to be in the templates folder
     }
 
+    @RequestMapping("/Search")
+    public String Search(Model model, HttpSession session){
+
+
+
+        return "Search";
+    }
+
 
 
 }
