@@ -64,7 +64,7 @@ const displaySongs = (songs) => {
     const htmlString = songs
         .map((song) => {
             return `
-            <li class="track" onclick = "songClick()">
+            <li class="track" id="${song.id}" >
                 <h2>${song.name}</h2>
                 <img src="${song.album.images[2].url}">
             </li>
@@ -72,20 +72,36 @@ const displaySongs = (songs) => {
         })
         .join('');
     songList.innerHTML = htmlString;
+
+
 };
+$(document).ready(function(){ // When the DOM is Ready, then bind the click
+    $( "li" ).on('click',function() {
+       alert('testing');
+    });
+});
+
+
+
+    $(document).ready(function() {
+        $("li.track").click(function(event) {
+            alert(event.target.id);
+        });
+    });
+
 
 function songClick(){
 
-    alert("test");
+    $(document).ready(function() {
+            $("li.track").click(function(event) {
+                alert(event.target.id);
+            });
+        });
+
 
 }
 
 
-
-/*
-function displaySongs(song){
-    console.log(song.name);
-}*/
 
 
 
