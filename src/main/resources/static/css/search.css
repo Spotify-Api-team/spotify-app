@@ -1,3 +1,16 @@
 ul{
+    list-style-type: none;
     background-color: #864cbf;
+    padding: 20px;
+    margin: 0px;
+
+}
+
+
+
+ul li.track{
+
+    background-color: #bf4c4c;
+    margin: 0px;
+
 }

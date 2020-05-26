@@ -64,16 +64,23 @@ const displaySongs = (songs) => {
     const htmlString = songs
         .map((song) => {
             return `
-            <li class="character">
+            <li class="track" onclick = "songClick()">
                 <h2>${song.name}</h2>
                 <img src="${song.album.images[2].url}">
-            
             </li>
         `;
         })
         .join('');
     songList.innerHTML = htmlString;
 };
+
+function songClick(){
+
+    alert("test");
+
+}
+
+
 
 /*
 function displaySongs(song){
