@@ -78,18 +78,47 @@ const displaySongs = (songs) => {
 
 function songClick(id){
 
-    alert(id);
+     $.ajax({
+            type: "GET",
+            url: "http://localhost:8080/token",
+            dataType: "text",
+            async: false,  //waits until this ajax call is done
+            success: function(response){
+                console.log(response);
+                window.token = response;
+            }
+
+        });
+
+        var deviceId;
+        $.ajax({
+            type: "GET",
+            url: "http://localhost:8080/deviceId",
+            dataType: "text",
+            async: false,
+            success: function(response){
+                deviceId = response;
+                console.log(deviceId);
+            }
+
+        });
+
+        console.log('member'+window.token);
+
+
+        $.ajax({
+            type: "POST",
+            url: "https://api.spotify.com/v1/me/player/queue?uri=spotify:track:"+id,
+            contentType: "application/json",
+            headers:{
+                'Authorization': 'Bearer ' + window.token
+            },
+            success: function(response){
+                console.log("queue success");
+            }
+        });
 
 }
-
-
-/*
-    $(document).ready(function() {
-        $("li.track").click(function(event) {
-            alert(event.target.id);
-        });
-    });
-    */
 
 
 
