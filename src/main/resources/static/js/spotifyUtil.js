@@ -123,11 +123,54 @@ function resumePlayback(){
                 'Authorization': 'Bearer ' + window.token
             },
             success: function(response){
-                console.log("play success");
+                console.log("resume");
+            }
+
+    });
+}
+
+
+function skipSong(){
+
+    $.ajax({
+        type: "GET",
+        url: "http://localhost:8080/token",
+        dataType: "text",
+        success: function(response){
+            window.token = response;
+        }
+
+    });
+
+    var deviceId;
+    $.ajax({
+            type: "GET",
+            url: "http://localhost:8080/deviceId",
+            dataType: "text",
+            async: false,
+            success: function(response){
+                deviceId = response;
+                console.log(deviceId);
+            }
+
+    });
+
+    //console.log(deviceId);
+
+
+    $.ajax({
+            type: "POST",
+            url: "https://api.spotify.com/v1/me/player/next?device_id=" + deviceId,
+            dataType: "json",
+            contentType: "application/json",
+            headers:{
+                'Authorization': 'Bearer ' + window.token
+            },
+            success: function(response){
+                console.log("skipped");
             }
 
     });
 
 
 }
-
