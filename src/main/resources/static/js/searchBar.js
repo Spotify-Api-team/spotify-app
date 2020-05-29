@@ -33,6 +33,7 @@ function searchFunction(e){
         limit: "3"
     };
 
+
     $.ajax({
         type: "GET",
         url: "https://api.spotify.com/v1/search?"+$.param(params),
@@ -76,8 +77,14 @@ const displaySongs = (songs) => {
 
 };
 
+/*
+ * When the song searched is clicked add to que
+ *
+ * @param the id of the song clicked
+ */
 function songClick(id){
 
+    //getting the users token
      $.ajax({
             type: "GET",
             url: "http://localhost:8080/token",
@@ -91,59 +98,61 @@ function songClick(id){
                 console.log("error")
             }
 
-        });
+     });
 
-        var deviceId;
-        $.ajax({
-            type: "GET",
-            url: "http://localhost:8080/deviceId",
-            dataType: "text",
-            async: false,
-            success: function(response){
-                deviceId = response;
-                console.log(deviceId);
+
+
+        //getting the device id
+     var deviceId;
+     $.ajax({
+
+        type: "GET",
+        url: "http://localhost:8080/deviceId",
+        dataType: "text",
+        async: false,
+        success: function(response){
+            deviceId = response;
+            console.log(deviceId);
+        }
+
+     });
+
+     console.log('member'+window.token);
+
+
+     //add song to queue or start song if no device is active
+     $.ajax({
+        type: "POST",
+        url: "https://api.spotify.com/v1/me/player/queue?uri=spotify:track:"+id,
+        contentType: "application/json",
+        headers:{
+            'Authorization': 'Bearer ' + window.token
+        },
+        success: function(response){
+            console.log("queue success");
+        },
+        error: function(xhr, status, error){
+
+            if(xhr.status == 404){//starting song if not active device
+                $.ajax({
+                    type: "PUT",
+                    url: "https://api.spotify.com/v1/me/player/play?device_id=" + deviceId,
+                    dataType: "json",
+                    contentType: "application/json",
+                    headers:{
+                        'Authorization': 'Bearer ' + window.token
+                    },
+                    data:JSON.stringify({
+                        "uris":["spotify:track:" + id]
+                    }),
+                    success: function(response){
+                        console.log("play success");
+                    }
+                });
             }
+        }
 
-        });
-
-        console.log('member'+window.token);
-
-
-        $.ajax({
-            type: "POST",
-            url: "https://api.spotify.com/v1/me/player/queue?uri=spotify:track:"+id,
-            contentType: "application/json",
-            headers:{
-                'Authorization': 'Bearer ' + window.token
-            },
-            success: function(response){
-                console.log("queue success");
-            },
-            error: function(xhr, status, error){
-                var errorMessage = xhr.status + ': ' + xhr.statusText
-                alert('Error - ' + errorMessage);
-                if(xhr.status == 404){
-                      $.ajax({
-                              type: "PUT",
-                              url: "https://api.spotify.com/v1/me/player/play?device_id=" + deviceId,
-                              dataType: "json",
-                              contentType: "application/json",
-                              headers:{
-                                  'Authorization': 'Bearer ' + window.token
-                              },
-                              data:JSON.stringify({
-
-                                  "uris":["spotify:track:" + id]
-                              }),
-                              success: function(response){
-                                  console.log("play success");
-                              }
-                      });
-                  }
-            }
-
-        });
-
+     });
 }
 
 

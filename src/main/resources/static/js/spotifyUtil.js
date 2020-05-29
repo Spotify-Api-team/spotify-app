@@ -1,5 +1,5 @@
 /**
- * Pauses a users playback
+ * Pauses a user's playback
  *
  */
 function pausePlayback(){
@@ -82,6 +82,10 @@ function startPlayback(){
     });
 }
 
+/**
+ * Resumes a user's playback
+ *
+ */
 function resumePlayback(){
 
     $.ajax({
