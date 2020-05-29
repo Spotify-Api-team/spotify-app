@@ -130,19 +130,8 @@ function resumePlayback(){
 }
 
 
-function skipSong(){
-
-    $.ajax({
-        type: "GET",
-        url: "http://localhost:8080/token",
-        dataType: "text",
-        success: function(response){
-            window.token = response;
-        }
-
-
 function displaySearch(){
-    window.location.replace("/Search")
+    window.location.replace("/Search");
 }
 
 
