@@ -1,13 +1,26 @@
 const searchBar = document.getElementById('searchBar');
 const songList = document.getElementById('songList');
+document.getElementById('songList').style.visibility= "hidden";
+
+//if now key up do not show <ul>
+
 
 searchBar.addEventListener('keyup',(e)=>{
+
+    document.getElementById('songList').style.visibility= "visible";
+    if(searchBar.value==''){
+        document.getElementById('songList').style.visibility= "hidden";
+        console.log("hidden");
+    }
+    //console.log("search bar value " +searchBar.value);
+
     console.log(e.target.value);
     const val= e.target.value;
     if(val.length>1){
         searchFunction(val);
         //songList = generateList(val);
     }
+
 
 });
 
@@ -154,6 +167,7 @@ function songClick(id){
 
      });
 }
+
 
 
 

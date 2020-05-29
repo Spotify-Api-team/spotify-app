@@ -69,8 +69,6 @@ public class viewcontroller {
     @RequestMapping("/Search")
     public String Search(Model model, HttpSession session){
 
-
-
         return "Search";
     }
 

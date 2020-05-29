@@ -131,3 +131,8 @@ function resumePlayback(){
 
 }
 
+function displaySearch(){
+    window.location.replace("/Search")
+}
+
+
