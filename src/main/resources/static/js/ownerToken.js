@@ -105,15 +105,15 @@ function refreshToken(){
 
 
 
-getUserData(window.token);
-function getUserData(accessToken) {
-    return $.ajax({
-        url: 'https://api.spotify.com/v1/me',
-        headers: {
-            'Authorization': 'Bearer ' + accessToken
-        }
-    });
-}
+//getUserData(window.token);
+//function getUserData(accessToken) {
+//    return $.ajax({
+//        url: 'https://api.spotify.com/v1/me',
+//        headers: {
+//            'Authorization': 'Bearer ' + accessToken
+//        }
+//    });
+//}
 
 function getToken(){
     return window.token;

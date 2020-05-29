@@ -46,7 +46,7 @@ public class viewcontroller {
         /*System.out.println(temp.getOwner().getFirstName());
         System.out.println(temp.getOwner().getSpotifyName());*/
 
-        return "owner";   //thymeleaf expects the file index to be in the templates folder
+        return "ownerpage";   //thymeleaf expects the file index to be in the templates folder
     }
 
     @RequestMapping("/JoinRoom")

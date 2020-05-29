@@ -86,6 +86,9 @@ function songClick(id){
             success: function(response){
                 console.log(response);
                 window.token = response;
+            },
+            error: function(){
+                console.log("error")
             }
 
         });
@@ -115,7 +118,30 @@ function songClick(id){
             },
             success: function(response){
                 console.log("queue success");
+            },
+            error: function(xhr, status, error){
+                var errorMessage = xhr.status + ': ' + xhr.statusText
+                alert('Error - ' + errorMessage);
+                if(xhr.status == 404){
+                      $.ajax({
+                              type: "PUT",
+                              url: "https://api.spotify.com/v1/me/player/play?device_id=" + deviceId,
+                              dataType: "json",
+                              contentType: "application/json",
+                              headers:{
+                                  'Authorization': 'Bearer ' + window.token
+                              },
+                              data:JSON.stringify({
+
+                                  "uris":["spotify:track:" + id]
+                              }),
+                              success: function(response){
+                                  console.log("play success");
+                              }
+                      });
+                  }
             }
+
         });
 
 }

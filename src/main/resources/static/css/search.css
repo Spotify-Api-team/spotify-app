@@ -2,7 +2,7 @@
 ul{
     list-style-type: none;
     background-color: #864cbf;
-    position: absolute;
+    /*position: absolute;*/
     padding: 20px;
 
     /*min-width: 160px;*/
