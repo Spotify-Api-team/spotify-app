@@ -63,7 +63,7 @@ public class viewcontroller {
         model.addAttribute("roomPassword", temp.getRoomPassword());
         model.addAttribute("memberName", tempMem.getName());
 
-        return "member";   //thymeleaf expects the file index to be in the templates folder
+        return "memberpage";   //thymeleaf expects the file index to be in the templates folder
     }
 
     @RequestMapping("/Search")
