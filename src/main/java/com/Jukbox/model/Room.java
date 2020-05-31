@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.ArrayList;
+import java.util.Queue;
 
 /**
  * Object that represents the room or lobby that users will join to listen to music
@@ -29,6 +30,8 @@ public class Room {
     private String roomPassword;
 
     private String deviceId;
+
+    private Queue<Track> queue;
 
 
     /**
