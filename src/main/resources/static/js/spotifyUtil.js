@@ -56,6 +56,7 @@ function startPlayback(){
             success: function(response){
                 deviceId = response;
                 console.log(deviceId);
+
             }
 
     });
@@ -76,7 +77,7 @@ function startPlayback(){
                 "uris":["spotify:track:2NeyJbL3ROKCjRkAjs77ya"]
             }),
             success: function(response){
-                console.log("play success");
+                console.log("start play sucess");
             }
 
     });

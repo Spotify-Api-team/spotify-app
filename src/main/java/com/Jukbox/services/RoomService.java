@@ -148,5 +148,16 @@ public class RoomService {
 
     }
 
+    /**
+     *
+     * @param id
+     * @return the ArrayList<Member> from repository
+     */
+    public ArrayList<Member> getMembers (int id){
+
+        Room room= getRoomById(id);
+        return room.getMembers();
+    }
+
 
 }

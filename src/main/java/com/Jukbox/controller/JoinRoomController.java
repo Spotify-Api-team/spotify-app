@@ -19,7 +19,6 @@ public class JoinRoomController {
     @PostMapping
     public void joinRoom(@RequestBody Member member, HttpSession session){
         session.setAttribute("memberPassword", member.getMemberPassword() );
-        //session.setAttribute("whichmember",)
 
         int roomId= roomService.updateRoom(member);
         session.setAttribute("roomId", roomId);

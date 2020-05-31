@@ -57,11 +57,10 @@ function searchFunction(e){
         },
         success: function(response){
             console.log(response);
-            var array=[];
+
             var i=0;
             while(i<3){
                 //console.log(response.tracks.items[i].name);
-                //array = array.concat(response.track.items[i].name);
                 console.log(response.tracks.items[i]);
                 displaySongs(response.tracks.items);
                 i = i+1;

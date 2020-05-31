@@ -72,7 +72,6 @@ public class Room {
      * @return arraylist of members
      */
     public ArrayList<Member> getMembers(){
-
         return this.members;
     }
 
