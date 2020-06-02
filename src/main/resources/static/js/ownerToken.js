@@ -45,6 +45,7 @@ $.ajax({
     }),
     success: function (response) {
         console.log(response);
+        console.log("this is the token and then the refresh token")
 
         //set global variable
         window.token= response.access_token;
@@ -94,6 +95,7 @@ function refreshToken(){
         }),
         success: function (response) {
             console.log(response);
+            console.log('token refresh')
             window.token= response.access_token;
         },
         error: function (jqXhr, textStatus, errorMessage) {
