@@ -13,7 +13,7 @@ header{
   height: 100%;
 }
 
-/* Set black background color, white text and some padding */
+/* Set black background color, black text and some padding */
 footer {
   background-color: green;
   color: black;
@@ -56,5 +56,25 @@ body {
     animation: bgcolor 10s infinite;
     -webkit-animation-direction: alternate;
     animation-direction: alternate;
+}
+
+
+/* for the pause play button*/
+button.PausePlay{
+    cursor: pointer;
+    font-family:Tahoma;
+    font-weight: bold;
+    font-size:14px;
+    background-color:#00ffff;
+    color:blue;
+    padding: 13px 6px;
+}
+
+div.pausePlay{
+  display:block;
+  cursor: pointer;
+  width: 50px;
+  height:50px;
+  background-color:#000000;
 }
 

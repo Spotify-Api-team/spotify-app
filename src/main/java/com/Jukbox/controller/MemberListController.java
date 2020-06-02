@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 @RequestMapping("/getMembers")
 @RestController
-public class GetMemberList {
+public class MemberListController {
 
     @Autowired
     private RoomService roomService;

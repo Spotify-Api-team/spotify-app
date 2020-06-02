@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Queue;
 
 /**
@@ -31,7 +32,9 @@ public class Room {
 
     private String deviceId;
 
-    private Queue<Track> queue;
+    private Queue<Track> toBeAddedQueue;
+
+    private  Queue<Track> queue;
 
 
     /**
@@ -118,6 +121,58 @@ public class Room {
     public String getDeviceId() {
         return deviceId;
     }
+
+    /**
+     * Add a track to the to be added queue
+     * @param track the track to be added
+     */
+    public void addToTBAQueue(Track track){
+
+        if(toBeAddedQueue.isEmpty()){
+
+            toBeAddedQueue.add(track);
+        }
+        else if(!toBeAddedQueue.contains(track)){
+
+            toBeAddedQueue.add(track);
+
+        }
+    }
+
+    /**
+     * Adds a track to the queue that is confirmed added to spotify
+     *
+     * @param track The Track to be added
+     */
+    public void addToFinalQueue(Track track){
+
+        queue.add(track);
+
+    }
+
+    /**
+     * Gets the queue of songs
+     *
+     * @return List of Tracks
+     */
+    public ArrayList<Track> getQueue(){
+
+        return new ArrayList<Track>(queue);
+
+    }
+
+
+    /**
+     * Gets song from the top of the to be added queue
+     *
+     * @return the track from the top of the queue
+     */
+    public Track popSong(){
+
+        return toBeAddedQueue.poll();
+
+    }
+
 
     /**
      * checks if two rooms are equal if the ids are the same

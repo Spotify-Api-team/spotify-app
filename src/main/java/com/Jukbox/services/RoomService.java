@@ -5,6 +5,7 @@ import com.Jukbox.model.Member;
 import com.Jukbox.model.Owner;
 import com.Jukbox.model.Room;
 import com.Jukbox.config.GeneratePassword;
+import com.Jukbox.model.Track;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -63,14 +64,6 @@ public class RoomService {
         return roomRepository.findById(id).get();
     }
 
-    /*
-    public Member getMemberById(int id){
-        Member temp= new Member();
-        temp.setId(id);
-
-        return roomRepository.findMembersById(id).get();
-    }
-    */
 
     /**
      *
@@ -94,16 +87,26 @@ public class RoomService {
 
     }
 
+    /**
+     *  Gets a room from the password
+     * @param roomPassword String the password entered
+     * @return
+     */
     public Room findByPassword(String roomPassword){
         return roomRepository.findByRoomPassword(roomPassword).get();
     }
 
 
+    /**
+     *
+     *
+     * Adds a new member to the room
+     *
+     * @param member the member to add
+     * @return the id of the room
+     */
     public int updateRoom(Member member){
-        //where is findID?
-        //data base query
-
-        //check the data base for the memember password that the memeber inputted
+        //TODO this may need some reworking kinda a wierd way to do this
         Room temp= findByPassword(member.getMemberPassword());
 
         member.setId(memberId);
@@ -115,20 +118,13 @@ public class RoomService {
         return temp.getId();
     }
 
-    public Room getRoomFromSession(HttpSession httpSession){
-        List<Room> rooms = roomRepository.findAll();
-        for(Room i: rooms){
 
-            System.out.println(i.getOwner().getHttpSession());
-
-            if (i.getOwner().getHttpSession() == httpSession)
-                return i;
-        }
-
-        return null;
-    }
-
-
+    /**
+     * Adds a spotify authorization token to a room
+     *
+     * @param token String the authorization token
+     * @param id The id of the room
+     */
     public void addSpotifyToken(String token, int id){
 
         Room room = roomRepository.findById(id).get();
@@ -140,6 +136,12 @@ public class RoomService {
     }
 
 
+    /**
+     * Adds a device id of the player to the room
+     *
+     * @param deviceId String device ID
+     * @param id int the id number of the room
+     */
     public void addDeviceId(String deviceId, int id){
 
         Room room = roomRepository.findById(id).get();
@@ -157,6 +159,46 @@ public class RoomService {
 
         Room room= getRoomById(id);
         return room.getMembers();
+    }
+
+    /**
+     * Adds a song to the to be added queue of a room
+     * @param track the track to add
+     * @param room the room to add the song to
+     */
+    public void addToTBAQueue(Track track, Room room){
+
+        room.addToTBAQueue(track);
+        roomRepository.save(room);
+
+    }
+
+    /**
+     * Adds a song to the to be added queue of a room
+     * @param track the track to add
+     * @param room the room to add the song to
+     */
+    public void addToQueue(Track track, Room room){
+
+        room.addToFinalQueue(track);
+        roomRepository.save(room);
+
+    }
+
+
+    /**
+     * gets the song from the top of the to be added queue
+     * and removes the element from the tba queue
+     *
+     * @param id id of the room
+     * @return the track at the top
+     */
+    public Track getSong(int id){
+
+        Room room = roomRepository.findById(id).get();
+
+        return room.popSong();
+
     }
 
 

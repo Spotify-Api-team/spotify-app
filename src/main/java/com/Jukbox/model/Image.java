@@ -2,8 +2,11 @@ package com.Jukbox.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/**
+ * Class that represents images for spotify tracks
+ *
+ */
 public class Image {
-
 
     private String url;
 
