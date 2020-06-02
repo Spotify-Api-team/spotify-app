@@ -60,7 +60,7 @@ body {
 
 
 /* for the pause play button*/
-button.PausePlay{
+button#PausePlay{
     cursor: pointer;
     font-family:Tahoma;
     font-weight: bold;
@@ -70,7 +70,7 @@ button.PausePlay{
     padding: 13px 6px;
 }
 
-div.pausePlay{
+div#PausePlay{
   display:block;
   cursor: pointer;
   width: 50px;
