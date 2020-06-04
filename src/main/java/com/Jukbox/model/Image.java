@@ -15,12 +15,21 @@ public class Image {
     private int height;
 
 
-    public Image(@JsonProperty("url") String url, @JsonProperty("width") int width, @JsonProperty("height") int height) {
+    public Image(@JsonProperty("height") int height, @JsonProperty("url") String url, @JsonProperty("width") int width) {
         this.url = url;
         this.width = width;
         this.height = height;
     }
 
+    public String getUrl() {
+        return url;
+    }
 
+    public int getWidth() {
+        return width;
+    }
 
+    public int getHeight() {
+        return height;
+    }
 }

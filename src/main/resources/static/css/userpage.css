@@ -4,13 +4,15 @@ header{
 
 
 /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
-.row.content {height: 450px}
+.row.content {height: 600px}
 
-/* Set gray background color and 100% height */
+
 .sidenav {
   padding-top: 20px;
   background-color: purple;
   height: 100%;
+  overflow-x: hidden;
+  overflow-x: auto;
 }
 
 /* Set black background color, black text and some padding */
@@ -77,4 +79,26 @@ div#PausePlay{
   height:50px;
   background-color:#000000;
 }
+
+
+ul li.queueTrack{
+
+    background-color: #bf4c4c;
+    color: black;
+    padding: 12px;
+    text-decoration: none;
+    display: flex;
+
+
+}
+
+ul li.queueTrack.info{
+    font-size: 1px;
+    color: white;
+    float: left;
+    padding: 1px;
+
+}
+
+
 

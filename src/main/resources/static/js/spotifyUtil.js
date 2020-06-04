@@ -1,3 +1,71 @@
+
+function getToken(){
+    var token;
+
+     $.ajax({
+            type: "GET",
+            url: "http://localhost:8080/token",
+            dataType: "text",
+            async: false,
+            success: function(response){
+                console.log(response);
+                token = response;
+            }
+
+     });
+
+     return token;
+
+}
+
+
+function getDeviceId(){
+
+    var deviceId;
+    $.ajax({
+        type: "GET",
+        url: "http://localhost:8080/deviceId",
+        dataType: "text",
+        async: false,
+        success: function(response){
+            deviceId = response;
+            console.log(deviceId);
+
+        }
+
+    });
+
+    return deviceId;
+
+}
+
+
+function getSongFromId(id){
+
+    var token = getToken();
+    var song;
+
+    $.ajax({
+        type: "GET",
+        url: "https://api.spotify.com/v1/tracks/" + id  ,
+        contentType: "application/json",
+        async: false,
+        headers:{
+            'Authorization': 'Bearer ' + token
+        },
+        success: function(response){
+            song = response;
+            console.log(response);
+
+        }
+
+    });
+
+    return song;
+
+}
+
+
 /**
  * Pauses a user's playback
  *
@@ -5,18 +73,9 @@
 function pausePlayback(){
 
 
-    $.ajax({
-        type: "GET",
-        url: "http://localhost:8080/token",
-        dataType: "text",
-        success: function(response){
-            console.log(response);
-            window.token = response;
-        }
+    var token = getToken();
 
-    });
-
-    console.log(window.token);
+    console.log(token);
 
     $.ajax({
         type: "PUT",
@@ -24,45 +83,22 @@ function pausePlayback(){
         dataType: "json",
         contentType: "application/json",
         headers:{
-            'Authorization': 'Bearer ' + window.token
+            'Authorization': 'Bearer ' + token
         }
 
     });
 }
 
 /**
- * Starts user playback with ashes
+ * Starts user playback
  *
  */
-function startPlayback(){
+function startPlayback(id){
 
 
-    $.ajax({
-        type: "GET",
-        url: "http://localhost:8080/token",
-        dataType: "text",
-        success: function(response){
-            window.token = response;
-        }
+    var token = getToken();
 
-    });
-
-    var deviceId;
-    $.ajax({
-            type: "GET",
-            url: "http://localhost:8080/deviceId",
-            dataType: "text",
-            async: false,
-            success: function(response){
-                deviceId = response;
-                console.log(deviceId);
-
-            }
-
-    });
-
-    console.log(deviceId);
-
+    var deviceId = getDeviceId();
 
     $.ajax({
             type: "PUT",
@@ -70,11 +106,11 @@ function startPlayback(){
             dataType: "json",
             contentType: "application/json",
             headers:{
-                'Authorization': 'Bearer ' + window.token
+                'Authorization': 'Bearer ' + token
             },
             data:JSON.stringify({
 
-                "uris":["spotify:track:2NeyJbL3ROKCjRkAjs77ya"]
+                "uris":["spotify:track:" + id ]
             }),
             success: function(response){
                 console.log("start play sucess");
@@ -89,31 +125,9 @@ function startPlayback(){
  */
 function resumePlayback(){
 
-    $.ajax({
-        type: "GET",
-        url: "http://localhost:8080/token",
-        dataType: "text",
-        success: function(response){
-            window.token = response;
-        }
+    var token = getToken();
 
-    });
-
-    var deviceId;
-    $.ajax({
-            type: "GET",
-            url: "http://localhost:8080/deviceId",
-            dataType: "text",
-            async: false,
-            success: function(response){
-                deviceId = response;
-                console.log(deviceId);
-            }
-
-    });
-
-    console.log(deviceId);
-
+    var deviceId = getDeviceId();
 
     $.ajax({
             type: "PUT",
@@ -121,7 +135,7 @@ function resumePlayback(){
             dataType: "json",
             contentType: "application/json",
             headers:{
-                'Authorization': 'Bearer ' + window.token
+                'Authorization': 'Bearer ' + token
             },
             success: function(response){
                 console.log("resume");
@@ -138,30 +152,9 @@ function displaySearch(){
 
 function skipSong(){
 
-    $.ajax({
-        type: "GET",
-        url: "http://localhost:8080/token",
-        dataType: "text",
-        success: function(response){
-            window.token = response;
-        }
+    var token = getToken();
 
-    });
-
-    var deviceId;
-    $.ajax({
-            type: "GET",
-            url: "http://localhost:8080/deviceId",
-            dataType: "text",
-            async: false,
-            success: function(response){
-                deviceId = response;
-                console.log(deviceId);
-            }
-
-    });
-
-    //console.log(deviceId);
+    var deviceId = getDeviceId();
 
 
     $.ajax({
@@ -170,14 +163,13 @@ function skipSong(){
             dataType: "json",
             contentType: "application/json",
             headers:{
-                'Authorization': 'Bearer ' + window.token
+                'Authorization': 'Bearer ' + token
             },
             success: function(response){
                 console.log("skipped");
             }
 
     });
-
 
 }
 
@@ -191,22 +183,16 @@ $(document).ready(function () {
         console.log("the buttonP should be bellow");
         console.log(buttonP);
         console.log("in the playback info function");
-        $.ajax({
-            type: "GET",
-            url: "http://localhost:8080/token",
-            dataType: "text",
-            success: function(response){
-                window.token = response;
-            }
 
-        });
+        var token = getToken();
+
         $.ajax({
             type: "GET",
             url: "https://api.spotify.com/v1/me/player",
             dataType: "json",
             //contentType: "application/json",
             headers:{
-                'Authorization': 'Bearer ' + window.token
+                'Authorization': 'Bearer ' + token
             },
             success: function(response){
                 console.log("got playback info");
@@ -230,4 +216,43 @@ $(document).ready(function () {
 
     });
  });
+
+
+ function queueSong(song){
+
+
+    //getting the users token
+    var token = getToken();
+
+    //getting the device id
+    var deviceId = getDeviceId();
+
+    var id = song.id;
+
+    //add song to queue or start song if no device is active
+    $.ajax({
+        type: "POST",
+        url: "https://api.spotify.com/v1/me/player/queue?uri=spotify:track:"+id,
+        contentType: "application/json",
+        async: false,
+        headers:{
+            'Authorization': 'Bearer ' + token
+        },
+        success: function(response){
+            console.log("queue success");
+            sendToQueue(song);
+
+        },
+        error: function(xhr, status, error){
+
+            if(xhr.status == 404){//starting song if not active device
+                startPlayback(id);
+                sendToQueue(song);
+            }
+        }
+
+    });
+
+
+ }
 

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
@@ -32,9 +33,9 @@ public class Room {
 
     private String deviceId;
 
-    private Queue<Track> toBeAddedQueue;
+    private SongQueue toBeAddedQueue;
 
-    private  Queue<Track> queue;
+    private  SongQueue queue;
 
 
     /**
@@ -44,8 +45,11 @@ public class Room {
 
         this.owner = null;
         this.id = -1;
-        members = new ArrayList<>();
+        this.members = new ArrayList<>();
         this.roomPassword = "none";
+        toBeAddedQueue = new SongQueue();
+        queue = new SongQueue();
+
 
     }
 
@@ -130,13 +134,12 @@ public class Room {
 
         if(toBeAddedQueue.isEmpty()){
 
-            toBeAddedQueue.add(track);
-        }
-        else if(!toBeAddedQueue.contains(track)){
+            toBeAddedQueue.addTrack(track);
+        } else if(!toBeAddedQueue.getLast().equals(track)){
 
-            toBeAddedQueue.add(track);
-
+            toBeAddedQueue.addTrack(track);
         }
+
     }
 
     /**
@@ -146,7 +149,7 @@ public class Room {
      */
     public void addToFinalQueue(Track track){
 
-        queue.add(track);
+        queue.addTrack(track);
 
     }
 
@@ -157,7 +160,7 @@ public class Room {
      */
     public ArrayList<Track> getQueue(){
 
-        return new ArrayList<Track>(queue);
+        return queue.getQueue();
 
     }
 
@@ -169,7 +172,7 @@ public class Room {
      */
     public Track popSong(){
 
-        return toBeAddedQueue.poll();
+        return toBeAddedQueue.pop();
 
     }
 

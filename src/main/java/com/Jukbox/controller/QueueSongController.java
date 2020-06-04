@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
 
-@RestController
 @RequestMapping("/queueSong")
+@RestController
 public class QueueSongController {
 
     @Autowired

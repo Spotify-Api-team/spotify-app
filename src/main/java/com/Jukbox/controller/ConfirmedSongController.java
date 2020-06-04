@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 
-@RestController
 @RequestMapping("/confirmedSong")
+@RestController
 public class ConfirmedSongController {
 
     @Autowired
@@ -20,7 +20,7 @@ public class ConfirmedSongController {
     public void addSongToQueue(@RequestBody Track track, HttpSession session){
 
         Room room = roomService.getRoomById((int)session.getAttribute("roomId"));
-        roomService.addToTBAQueue(track, room);
+        roomService.addToQueue(track, room);
 
     }
 

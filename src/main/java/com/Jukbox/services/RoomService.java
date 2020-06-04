@@ -196,8 +196,9 @@ public class RoomService {
     public Track getSong(int id){
 
         Room room = roomRepository.findById(id).get();
-
-        return room.popSong();
+        Track track = room.popSong();
+        roomRepository.save(room);
+        return track;
 
     }
 

@@ -14,7 +14,8 @@
     <script src="https://sdk.scdn.co/spotify-player.js"></script>
     <script src=" ../js/ownerToken.js"></script>
     <script src= "../js/spotifyUtil.js"></script>
-
+    <script src= "../js/simplifySong.js"></script>
+    <script src= "../js/queueSongs.js"></script>
 
 
 </head>
@@ -32,7 +33,7 @@
         <div class="col-sm-2 sidenav">
             <h1 th:text="${roomName}"/>
             <h2 th:text="${ownerName+'s Room'}"/>
-            <h1>queue goes here</h1>
+            <ul id = "queue"></ul>
         </div>
 
         <div class="col-sm-8 text-left">

@@ -10,10 +10,10 @@ function convertSong(track){
 
     simpleTrack = {
 
-        "name": name,
         "id": id,
-        "image": image,
-        "artist": artist
+        "name": name,
+        "artist": artist,
+        "image": image
 
     }
 

@@ -78,98 +78,38 @@ const displaySongs = (songs) => {
         .map((song) => {
             return `
             <li class="track" id="${song.id}" onclick = "songClick(this.id)" >
-                <h2>${song.name}</h2>
-                <img src="${song.album.images[2].url}">
+                <img src="${song.album.images[2].url}" style = "float left;" >
+                <div class = "info">${song.name} by ${song.artists[0].name} </div>
             </li>
         `;
         })
         .join('');
     songList.innerHTML = htmlString;
-
-
 };
 
 /*
- * When the song searched is clicked add to que
+ * When the song searched send to queue in backend
  *
  * @param the id of the song clicked
  */
 function songClick(id){
 
-    //getting the users token
-     $.ajax({
-            type: "GET",
-            url: "http://localhost:8080/token",
-            dataType: "text",
-            async: false,  //waits until this ajax call is done
-            success: function(response){
-                console.log(response);
-                window.token = response;
-            },
-            error: function(){
-                console.log("error")
-            }
+    var song = getSongFromId(id);
+    var simpleSong = convertSong(song);
 
-     });
+    console.log(JSON.stringify(simpleSong));
 
-
-
-        //getting the device id
-     var deviceId;
-     $.ajax({
-
-        type: "GET",
-        url: "http://localhost:8080/deviceId",
-        dataType: "text",
-        async: false,
-        success: function(response){
-            deviceId = response;
-            console.log(deviceId);
-        }
-
-     });
-
-     console.log('member'+window.token);
-
-
-     //add song to queue or start song if no device is active
-     $.ajax({
+    $.ajax({
         type: "POST",
-        url: "https://api.spotify.com/v1/me/player/queue?uri=spotify:track:"+id,
-        contentType: "application/json",
-        headers:{
-            'Authorization': 'Bearer ' + window.token
-        },
+        url: "http://localhost:8080/queueSong",
+        contentType: "application/Json",
+        data: JSON.stringify(simpleSong),
         success: function(response){
-            console.log("queue success");
+            console.log("sent to TBAqueue");
         },
-        error: function(xhr, status, error){
-
-            if(xhr.status == 404){//starting song if not active device
-                $.ajax({
-                    type: "PUT",
-                    url: "https://api.spotify.com/v1/me/player/play?device_id=" + deviceId,
-                    dataType: "json",
-                    contentType: "application/json",
-                    headers:{
-                        'Authorization': 'Bearer ' + window.token
-                    },
-                    data:JSON.stringify({
-                        "uris":["spotify:track:" + id]
-                    }),
-                    success: function(response){
-                        console.log("play success");
-                    }
-                });
-            }
+        error: function(jqXhr, textStatus, errorMessage){
+            console.log(errorMessage);
         }
+    });
 
-     });
 }
-
-
-
-
-
-
-
