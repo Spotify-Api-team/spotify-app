@@ -79,7 +79,7 @@ const displaySongs = (songs) => {
             return `
             <li class="track" id="${song.id}" onclick = "songClick(this.id)" >
                 <img src="${song.album.images[2].url}" style = "float left;" >
-                <div class = "info">${song.name} by ${song.artists[0].name} </div>
+                <div id = "info">${song.name} by ${song.artists[0].name} </div>
             </li>
         `;
         })

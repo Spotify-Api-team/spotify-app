@@ -35,7 +35,7 @@ public class Room {
 
     private SongQueue toBeAddedQueue;
 
-    private  SongQueue queue;
+    private SongQueue queue;
 
 
     /**
@@ -133,7 +133,6 @@ public class Room {
     public void addToTBAQueue(Track track){
 
         if(toBeAddedQueue.isEmpty()){
-
             toBeAddedQueue.addTrack(track);
         } else if(!toBeAddedQueue.getLast().equals(track)){
 

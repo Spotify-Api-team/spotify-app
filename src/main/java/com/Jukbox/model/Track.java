@@ -26,6 +26,7 @@ public class Track {
 
     }
 
+    //getters all needed to convert to Json
     public String getId() {
         return id;
     }
