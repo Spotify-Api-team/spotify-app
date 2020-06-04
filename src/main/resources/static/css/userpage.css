@@ -4,7 +4,7 @@ header{
 
 
 /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
-.row.content {height: 600px}
+.row.content {height: 500px}
 
 
 .sidenav {
@@ -92,9 +92,9 @@ ul li.queueTrack{
 
 }
 
-ul li.queueTrack.info{
+ul li.queueTrack#info{
+
     font-size: 1px;
-    color: white;
     float: left;
     padding: 1px;
 
