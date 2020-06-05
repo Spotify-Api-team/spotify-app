@@ -18,20 +18,13 @@ public class ConfirmedSongController {
 
     @PostMapping
     public void addSongToQueue(@RequestBody Track track, HttpSession session){
-
         Room room = roomService.getRoomById((int)session.getAttribute("roomId"));
         roomService.addToQueue(track, room);
-
     }
 
 
     @GetMapping
     public ArrayList<Track> getQueue(HttpSession session){
-
         return roomService.getRoomById((int)session.getAttribute("roomId")).getQueue();
-
     }
-
-
-
 }

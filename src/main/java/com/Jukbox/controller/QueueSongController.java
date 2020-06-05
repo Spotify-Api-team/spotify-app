@@ -20,7 +20,7 @@ public class QueueSongController {
     RoomService roomService;
 
     @PostMapping
-    public void addSongToQueue(@RequestBody Track track, HttpSession session){
+    public void addSongToTBAQueue(@RequestBody Track track, HttpSession session){
 
         Room room = roomService.getRoomById((int)session.getAttribute("roomId"));
         roomService.addToTBAQueue(track, room);

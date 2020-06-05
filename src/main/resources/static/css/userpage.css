@@ -85,10 +85,14 @@ ul li.queueTrack{
 
     background-color: #bf4c4c;
     color: black;
-    padding: 12px;
+    padding: 6px;
     text-decoration: none;
     display: flex;
-
+    /*
+    border-style: solid solid none solid;
+    border-width: 2px;
+    border-color: black;
+    */
 
 }
 

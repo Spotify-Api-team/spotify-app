@@ -210,7 +210,6 @@ $(document).ready(function () {
                     pausePlayback();
                 }
             }
-           // eturn false;
 
         });
 
@@ -240,12 +239,14 @@ $(document).ready(function () {
         },
         success: function(response){
             console.log("queue success");
+
+            //send to backed queue
             sendToQueue(song);
 
         },
         error: function(xhr, status, error){
 
-            if(xhr.status == 404){//starting song if not active device
+            if(xhr.status == 404){ //starting song if not active device
                 startPlayback(id);
                 sendToQueue(song);
             }

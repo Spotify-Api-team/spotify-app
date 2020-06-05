@@ -37,6 +37,7 @@ public class Room {
 
     private SongQueue queue;
 
+    private Track currentTrack;
 
     /**
      * Default Constructor
@@ -49,6 +50,7 @@ public class Room {
         this.roomPassword = "none";
         toBeAddedQueue = new SongQueue();
         queue = new SongQueue();
+        currentTrack=null;
 
 
     }
@@ -166,6 +168,7 @@ public class Room {
 
     /**
      * Gets song from the top of the to be added queue
+     * "toBeAddedQueue" is of type SongQueue class
      *
      * @return the track from the top of the queue
      */
@@ -175,6 +178,19 @@ public class Room {
 
     }
 
+    /**
+     * main purpose of this function is for the footer current song display
+     * added the current track to the room and will be saved to the repository in RoomService
+     *
+     * @param current
+     */
+    public void addCurrentTrack(Track current){
+        this.currentTrack=current;
+    }
+
+    public Track getCurrentTrack() {
+        return currentTrack;
+    }
 
     /**
      * checks if two rooms are equal if the ids are the same

@@ -9,6 +9,7 @@ function checkQueue(){
         url: "http://localhost:8080/getSong",
         dataType: "json",
         success: function(response){
+
             queueSong(response);
         },
         error: function(error){

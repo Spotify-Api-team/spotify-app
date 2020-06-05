@@ -2,6 +2,9 @@ const searchBar = document.getElementById('searchBar');
 const songList = document.getElementById('songList');
 document.getElementById('songList').style.visibility= "hidden";
 
+//make sure its hidden at at the correct html render location
+document.getElementById('queue').style.visibility="hidden";
+
 //if now key up do not show <ul>
 
 
@@ -64,6 +67,7 @@ function searchFunction(e){
                 console.log(response.tracks.items[i]);
                 displaySongs(response.tracks.items);
                 i = i+1;
+
             }
             //console.log(response.tracks.items[0].name);
 
@@ -99,6 +103,10 @@ function songClick(id){
 
     console.log(JSON.stringify(simpleSong));
 
+    //make sure its hidden at at the correct html render location
+    document.getElementById('queue').style.visibility="visible";
+
+    //sent to the TBA que to be checked
     $.ajax({
         type: "POST",
         url: "http://localhost:8080/queueSong",
@@ -111,5 +119,6 @@ function songClick(id){
             console.log(errorMessage);
         }
     });
+
 
 }

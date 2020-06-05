@@ -55,7 +55,7 @@ public class RoomService {
     }
 
     /**
-     *  Gets a room by its id number
+     *  Gets a room(in repository) by its id number
      * @param id the id of the room
      * @return the room that is being looked for
      */
@@ -163,6 +163,9 @@ public class RoomService {
 
     /**
      * Adds a song to the to be added queue of a room
+     * Only adds if there has not been a duplicate song within the last second
+     * this is because that displayQueue.js will be enacting a pop off the TBA queue in that timeframe
+     *
      * @param track the track to add
      * @param room the room to add the song to
      */
@@ -189,6 +192,7 @@ public class RoomService {
     /**
      * gets the song from the top of the to be added queue
      * and removes the element from the tba queue
+     * used for the  queueSongs.js which is called every second
      *
      * @param id id of the room
      * @return the track at the top
@@ -196,11 +200,32 @@ public class RoomService {
     public Track getSong(int id){
 
         Room room = roomRepository.findById(id).get();
+
         Track track = room.popSong();
         roomRepository.save(room);
         return track;
 
     }
 
+    /**
+     *
+     * @param track
+     * @param room
+     */
+    public void addCurrentTrack(Track track, Room room) {
+        room.addCurrentTrack(track);
+        roomRepository.save(room);
+    }
 
+    /**
+     *
+     * @param id
+     * @return the current tack playing to the current song controller
+     */
+    public Track getCurrentTrack(int id){
+
+        Room room = getRoomById(id);
+        //Track function
+        return room.getCurrentTrack();
+    }
 }

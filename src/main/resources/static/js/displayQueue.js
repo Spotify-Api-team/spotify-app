@@ -12,6 +12,8 @@ function updateQueue(){
             success: function(response){
                 console.log(response);
                 displayQueue(response);
+                //document.getElementById('queue').style.visibility="visible";
+                console.log('this worked');
             },
             error: function(error){
                 //console.log("error in checkqueue");
@@ -26,7 +28,7 @@ const displayQueue = (songs) => {
         .map((song) => {
             return `
             <li class="queueTrack" id="${song.id}"  >
-                <img src="${song.image.url}" style = "float left; width: 30px; height 30px;">
+                <img src="${song.image.url}" style = "float left; width: 30px; height 30px; padding-right: 5px;">
                 <div class="info"> ${song.name} </div>
             </li>
         `;
