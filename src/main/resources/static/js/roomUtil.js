@@ -62,5 +62,5 @@ function displayCurrentSong(song){
     var x = document.createElement("IMG");
     x.setAttribute("src",src=song.image.url );
     document.getElementById('currentSongImg').src=x.src;
-    document.getElementById('currentSong').innerHTML=song.name+'by'+song.artist;
+    document.getElementById('currentSong').innerHTML=song.name+' by '+song.artist;
 }

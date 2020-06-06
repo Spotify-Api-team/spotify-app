@@ -17,6 +17,7 @@ header{
 
 /* Set black background color, black text and some padding */
 footer {
+  display: flex;
   background-color: green;
   color: black;
   padding: 15px;
@@ -62,15 +63,11 @@ body {
 
 
 /* for the pause play button*/
-button#pausePlay{
-    cursor: pointer;
-    font-family:Tahoma;
-    font-weight: bold;
-    color:blue;
-    padding: 3px 3px;
-    width:60px;
-    height:60px;
-    background-color: coral;
+button#PausePlay{
+
+    right: 90px;
+    position: absolute;
+    padding: 10px 10px;
 
 }
 button#skip{
@@ -79,8 +76,10 @@ button#skip{
     font-weight: bold;
     font-size:20px;
     color:blue;
-    padding: 3px 3px;
+    padding: 10px 10px;
     width:auto;
+    right: 30px;
+    position: absolute;
 
 
 }

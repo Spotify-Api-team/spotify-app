@@ -4,12 +4,11 @@ import com.Jukbox.dao.RoomRepository;
 import com.Jukbox.model.Member;
 import com.Jukbox.model.Owner;
 import com.Jukbox.model.Room;
-import com.Jukbox.config.GeneratePassword;
+import com.Jukbox.utils.GeneratePassword;
 import com.Jukbox.model.Track;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 

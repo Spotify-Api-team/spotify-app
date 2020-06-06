@@ -1,4 +1,4 @@
-package com.Jukbox.config;
+package com.Jukbox.utils;
 
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.*;
