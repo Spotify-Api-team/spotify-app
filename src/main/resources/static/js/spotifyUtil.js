@@ -201,12 +201,12 @@ $(document).ready(function () {
                 console.log("test");
                 console.log("this is var"+response.is_playing);
                 if(response==null || response.is_playing==false){
-                    buttonP.innerHTML= "Pause";
+                    buttonP.textContent="\u23F8";
                     resumePlayback();
 
                 }
                 else{
-                    buttonP.innerHTML= "Play";
+                    buttonP.innerHTML= "\u25B6";
                     pausePlayback();
                 }
             }

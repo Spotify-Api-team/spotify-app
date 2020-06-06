@@ -160,6 +160,8 @@ window.onSpotifyWebPlaybackSDKReady = () => {
             contentType: "application/Json",
             data: JSON.stringify(currentSong),
             success: function(response){
+                //window.songChange=true;
+                //displayFooter(currentSong);
             },
             error: function(error){
             }

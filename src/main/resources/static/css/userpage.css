@@ -62,22 +62,27 @@ body {
 
 
 /* for the pause play button*/
-button#PausePlay{
+button#pausePlay{
     cursor: pointer;
     font-family:Tahoma;
     font-weight: bold;
-    font-size:14px;
-    background-color:#00ffff;
     color:blue;
-    padding: 13px 6px;
-}
+    padding: 3px 3px;
+    width:60px;
+    height:60px;
+    background-color: coral;
 
-div#PausePlay{
-  display:block;
-  cursor: pointer;
-  width: 50px;
-  height:50px;
-  background-color:#000000;
+}
+button#skip{
+    cursor: pointer;
+    font-family:Tahoma;
+    font-weight: bold;
+    font-size:20px;
+    color:blue;
+    padding: 3px 3px;
+    width:auto;
+
+
 }
 
 
