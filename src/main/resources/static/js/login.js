@@ -69,6 +69,7 @@ function testF() {
                 },
                 error: function (jqXhr, textStatus, errorMessage) {
                     console.log("error" + errorMessage);
+                    alert("Looks like the room password you entered does not exist :( ");
                 }
             });
             return false;

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 /**
  * This will keep track of all the rooms
@@ -60,7 +61,12 @@ public class RoomService {
      */
     public Room getRoomById(int id){
 
-        return roomRepository.findById(id).get();
+        try {
+            return roomRepository.findById(id).get();
+        }catch (NullPointerException e){
+            System.out.println(e);
+            return null;
+        }
     }
 
 
@@ -92,29 +98,30 @@ public class RoomService {
      * @return
      */
     public Room findByPassword(String roomPassword){
-        return roomRepository.findByRoomPassword(roomPassword).get();
+        try {
+            return roomRepository.findByRoomPassword(roomPassword).get();
+        }catch (NoSuchElementException e){
+
+            return null;
+        }
     }
 
 
     /**
+     *  Adds a new member to a room
      *
-     *
-     * Adds a new member to the room
-     *
-     * @param member the member to add
-     * @return the id of the room
+     * @param member
+     * @param room
      */
-    public int updateRoom(Member member){
-        //TODO this may need some reworking kinda a wierd way to do this
-        Room temp= findByPassword(member.getMemberPassword());
+    public void updateRoom(Member member, Room room){
+
 
         member.setId(memberId);
         memberId++;
 
-        temp.addMember(member);
-        roomRepository.save(temp);
+        room.addMember(member);
+        roomRepository.save(room);
 
-        return temp.getId();
     }
 
 
