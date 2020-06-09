@@ -14,8 +14,8 @@ function getMembers(){
             url: "http://localhost:8080/getMembers",
             contentType: "application/Json",
             success: function (response) {
-                console.log("got the members");
-                console.log(response);
+                //console.log("got the members");
+                //console.log(response);
                 displayMembers(response);
                 document.getElementById('memberList').style.visibility= "visible";
             },
@@ -48,8 +48,8 @@ function getCurrentSong(){
             url: "http://localhost:8080/currentSong",
             contentType: "application/Json",
             success: function (response) {
-                console.log("got the currentSOng");
-                console.log(response);
+                //console.log("got the currentSOng");
+                //console.log(response);
                 displayCurrentSong(response);
             },
             error: function (jqXhr, textStatus, errorMessage) {

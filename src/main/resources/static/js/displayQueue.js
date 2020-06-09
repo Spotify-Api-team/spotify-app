@@ -10,10 +10,9 @@ function updateQueue(){
             url: "http://localhost:8080/confirmedSong",
             dataType: "json",
             success: function(response){
-                console.log(response);
+                //console.log(response);
                 displayQueue(response);
                 //document.getElementById('queue').style.visibility="visible";
-                console.log('this worked');
             },
             error: function(error){
                 //console.log("error in checkqueue");
