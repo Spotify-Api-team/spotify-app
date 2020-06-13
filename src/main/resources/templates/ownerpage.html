@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeLeaf.org" lang="en">
+<head>
+    <title>Jukbox Owner</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/search.css">
+    <link rel="stylesheet" type="text/css" href="../css/searchBar.css">
+    <link rel="stylesheet" type="text/css" href="../css/userpage.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src= "../js/spotifyUtil.js"></script>
+    <script src="https://sdk.scdn.co/spotify-player.js"></script>
+    <script src=" ../js/ownerToken.js"></script>
+    <script src= "../js/simplifySong.js"></script>
+    <script src= "../js/queueSongs.js"></script>
+    <script src= "../js/displayQueue.js"></script>
+
+
+
+</head>
+<body>
+
+
+<header class="container-fluid text-center">
+    <h1 th:text="${roomPassword}"/>
+</header>
+
+
+<div class="container-fluid text-center">
+    <div class="row content">
+
+        <div class="col-sm-2 sidenav">
+            <h1 th:text="${roomName}"/>
+            <h2 th:text="${ownerName+'s Room'}"/>
+            <ul id = "queue"></ul>
+        </div>
+
+        <div class="col-sm-8 text-left">
+
+            <div class="container-fluid text-center">
+
+                <h1>&#x2728;Spotify Search Bar &#x2728;</h1>
+                <div id="searchWrapper">
+                    <input type="text" name="searchBar" id="searchBar" placeholder="search for track"/>
+                </div>
+
+                <ul id="songList"></ul>
+
+            </div>
+            <script src="../js/searchBar.js"></script>
+
+        </div>
+
+        <div class="col-sm-2 sidenav">
+           <h1>members</h1>
+            <ul id="memberList"></ul>
+        </div>
+        <script src="../js/roomUtil.js"></script>
+
+    </div>
+</div>
+
+<footer id ="footer" class="container-fluid text-center">
+
+    <img style='width:64px;height:64px;' id="currentSongImg">
+    <h2 id="currentSong"></h2>
+
+    <button style='font-size:20px;' id="PausePlay">	&#x23F8;</button>
+
+    <button id="skip" onclick="skipSong()">&#x23ED;</button>
+
+</footer>
+
+</body>
+</html>

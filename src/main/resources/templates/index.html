@@ -4,101 +4,34 @@
 
     <title>Spotify</title>
     <link rel="stylesheet" type="text/css" href="../css/custom.css">
-   <!-- <script type="text.javascript" src="js/custom.js"></script>-->
+
+   <!-- Script -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-
-    <!-- ---------------first form---------------------- -->
-    <script>
-        $(document).ready(function() {
-            $("Form.one").on("submit", function () {
-
-                console.log("console log working");
-
-                var that = $(this), //that reference current object we are working with
-                    //url = that.attr('action'),
-                    //type = that.attr('method'),
-                    data = {};
-
-                that.find("[name]").each(function (index, value) {
-                    var that = $(this),
-                        name = that.attr("name"),
-                        value = that.val();
-                    data[name] = value;
-                });
-                $.ajax({
-                    type: "POST",
-                    contentType: "application/json",
-                    url: "http://localhost:8080/createRoom",
-                    data: JSON.stringify(data),
-                    success:function(response){
-                        console.log("success");
-                        window.location.replace("http://localhost:8080/Room");
-                    },
-                    error:function(jqXhr, textStatus, errorMessage){
-                        console.log("error" + errorMessage);
-                    }
-                });
-                return false;
-            });
-        });
-    </script>
-
-    <!-- ---------------second form---------------------- -->
-
-    <script>
-        $(document).ready(function() {
-            $("Form.two").on("submit", function () {
-
-
-                var that = $(this), //that reference current object we are working with
-                                    //url = that.attr('action'),
-                                    //type = that.attr('method'),
-                    data = {};
-
-                that.find("[name]").each(function (index, value) {
-                    var that = $(this),
-                        name = that.attr("name"),
-                        value = that.val();
-                    data[name] = value;
-                });
-                $.ajax({
-                    type: "POST",
-                    contentType: "application/json",
-                    url: "http://localhost:8080/joiningRoom",
-                    data: JSON.stringify(data),
-                    success:function(response){
-                        console.log("success");
-                        window.location.replace("http://localhost:8080/JoinRoom");
-                    },
-                    error:function(jqXhr, textStatus, errorMessage){
-                        console.log("error" + errorMessage);
-                    }
-                });
-                return false;
-            });
-        });
-    </script>
-
+    <script src="../js/login.js"></script>
+    <script src= "../js/spotifyUtil.js"></script>
+    <script> testF() </script>
 
 </head>
 <body>
+
     <h1 style="font-size:50px">JukBox</h1>
-    <Form class="one" method="POST" action="http://localhost:8080/Room"  >
-        <label>Name:</label>
+
+    <Form class="one">
+        <label>Your name:</label>
         <input type="text" name="fname"><br><br>
-        <label>Spotify Username:</label>
-        <input type="text" name="sname">
+        <label>Room Name:</label>
+        <input type="text" name="roomName">
         <input type="submit" value="Create Room">
     </Form>
+
     <Form class="two">
         <label>Name:</label>
         <input type="text" name="fname"><br><br>
         <label> Join Session:</label>
         <input type="text" name="memberPassword">
         <input type="submit" value="Join Room">
-
     </Form>
+
 
 </body>
 </html>

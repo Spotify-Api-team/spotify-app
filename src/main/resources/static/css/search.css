@@ -1,0 +1,33 @@
+
+ul{
+    list-style-type: none;
+    background-color: #864cbf;
+    padding: 6px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+
+}
+
+ul li.track{
+
+    background-color: #bf4c4c;
+    /*margin: 0px;*/
+    float: none;
+    color: black;
+    padding: 12px;
+    text-decoration: none;
+    display: flex;
+    text-align: left;
+
+}
+ul li.track:hover {
+  background-color: blue;
+}
+
+ul li.track#info{
+
+    float: left;
+    font-size: 25px;
+
+}
+

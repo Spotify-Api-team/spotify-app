@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeLeaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="../css/custom.css">
+    <title>index2</title>
+
+    <!-- Scripts -->
+    <script src="https://sdk.scdn.co/spotify-player.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- runs the neccesarry js files here -->
+    <script src=" ../js/ownerToken.js"></script>
+    <script src= "../js/spotifyUtil.js"></script>
+
+    <!-- for search bar -->
+    <script src="../js/search.js"></script>
+
+
+</head>
+<body>
+
+
+
+<div class="roomShow">
+    <!--<button id="testButton">Sign into Spotify</button>-->
+    <h1 style="font-size:50px">Owner Room View</h1>
+
+
+
+    <label>Room:</label>
+
+    <div class="roomVal">
+        <p th:text="${ownerName+'s Room'}"/>
+    </div>
+
+    <label>Room Name:</label>
+    <div class="roomVal">
+        <p th:text="${roomName}"/>
+    </div>
+
+    <label>Room Password:</label>
+    <div class="roomVal">
+        <p th:text="${roomPassword}"/>
+    </div>
+
+    <button onclick="getSearchHTML()">go to search page</button>
+
+
+
+</div>
+
+<footer>
+    <button onclick="startPlayback()">"play"</button>
+    <button onclick="pausePlayback()">"pause"</button>
+    <button onclick="startSong()">start song</button>
+</footer>
+
+</body>
+</html>

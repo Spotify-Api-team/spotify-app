@@ -6,12 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import com.Jukbox.services.RoomService;
 import com.Jukbox.model.Room;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.Optional;
 
 
 @Controller
@@ -32,17 +29,24 @@ public class viewcontroller {
     @RequestMapping("/Room")
     public String OwnerRoomView(Model model, HttpSession session){
 
+        //return "spotifyTestSDK";
 
-        Room temp = roomService.getRoomById( (int)session.getAttribute("roomId"));
+
+        Room temp = roomService.getRoomById((int)session.getAttribute("roomId"));
 
 
         model.addAttribute("ownerName",temp.getOwner().getFirstName());
-        model.addAttribute("ownerSname",temp.getOwner().getSpotifyName());
+        model.addAttribute("roomName",temp.getOwner().getRoomName());
+
+        //room password
+        model.addAttribute("roomPassword", temp.getRoomPassword());
+
+        System.out.println(temp.getRoomPassword());
 
         /*System.out.println(temp.getOwner().getFirstName());
         System.out.println(temp.getOwner().getSpotifyName());*/
 
-        return "index2";   //thymeleaf expects the file index to be in the templates folder
+        return "ownerpage";   //thymeleaf expects the file index to be in the templates folder
     }
 
     @RequestMapping("/JoinRoom")
@@ -50,13 +54,21 @@ public class viewcontroller {
 
 
         Room temp = roomService.getRoomById( (int)session.getAttribute("roomId"));
+        Member tempMem = roomService.getMemberByIdandRoom(temp,(int)session.getAttribute("memberId"));
 
+        System.out.println(tempMem.getName());
 
         model.addAttribute("ownerName",temp.getOwner().getFirstName());
-        model.addAttribute("ownerSname",temp.getOwner().getSpotifyName());
+        model.addAttribute("roomName",temp.getOwner().getRoomName());
+        model.addAttribute("roomPassword", temp.getRoomPassword());
+        model.addAttribute("memberName", tempMem.getName());
 
+        return "memberpage";   //thymeleaf expects the file index to be in the templates folder
+    }
 
-        return "index2";   //thymeleaf expects the file index to be in the templates folder
+    @RequestMapping("/Search")
+    public String Search(Model model, HttpSession session){
+        return "Search";
     }
 
 

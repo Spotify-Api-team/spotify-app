@@ -1,0 +1,112 @@
+header{
+        background-color: red;
+}
+
+
+/* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+.row.content {height: 475px}
+
+
+.sidenav {
+  padding-top: 20px;
+  background-color: purple;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-x: auto;
+}
+
+/* Set black background color, black text and some padding */
+footer {
+  display: flex;
+  background-color: green;
+  color: black;
+  padding: 15px;
+}
+
+/* On small screens, set height to 'auto' for sidenav and grid */
+@media screen and (max-width: 767px) {
+  .sidenav {
+    height: auto;
+    padding: 15px;
+  }
+  .row.content {height:auto;}
+}
+
+@keyframes bgcolor {
+    0% {
+        background-color: #45a3e5
+    }
+
+    30% {
+        background-color: #66bf39
+    }
+
+    60% {
+        background-color: #eb670f
+    }
+
+    90% {
+        background-color: #f35
+    }
+
+    100% {
+        background-color: #864cbf
+    }
+}
+
+body {
+    -webkit-animation: bgcolor 20s infinite;
+    animation: bgcolor 10s infinite;
+    -webkit-animation-direction: alternate;
+    animation-direction: alternate;
+}
+
+
+/* for the pause play button*/
+button#PausePlay{
+
+    right: 90px;
+    position: absolute;
+    padding: 10px 10px;
+
+}
+button#skip{
+    cursor: pointer;
+    font-family:Tahoma;
+    font-weight: bold;
+    font-size:20px;
+    color:blue;
+    padding: 10px 10px;
+    width:auto;
+    right: 30px;
+    position: absolute;
+
+
+}
+
+
+ul li.queueTrack{
+
+    background-color: #bf4c4c;
+    color: black;
+    padding: 6px;
+    text-decoration: none;
+    display: flex;
+    /*
+    border-style: solid solid none solid;
+    border-width: 2px;
+    border-color: black;
+    */
+
+}
+
+ul li.queueTrack#info{
+
+    font-size: 1px;
+    float: left;
+    padding: 1px;
+
+}
+
+
+

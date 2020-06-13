@@ -22,14 +22,12 @@ public class RoomController {
     @PostMapping
     public void createNewRoom(@RequestBody Owner owner, HttpSession session){
 
-        session.setAttribute("name", owner.getFirstName());
-        session.setAttribute("sname", owner.getSpotifyName());
+        session.setAttribute("name", owner.getRoomName());
+        session.setAttribute("roomName", owner.getRoomName());
         System.out.println("this is creating a new room");
         /*System.out.println(owner.getSpotifyName());
         System.out.println(owner.getFirstName());*/
         int id = roomService.addRoom(owner);
-
-
         session.setAttribute("roomId", id);
     }
 
