@@ -31,11 +31,11 @@ searchBar.addEventListener('keyup',(e)=>{
 
 //used in the event listner for api call
 function searchFunction(e){
-
+    var address= getExactAddress();
     console.log('e='+e);
     $.ajax({
         type: "GET",
-        url: "http://localhost:8080/token",
+        url: address +"/token",
         dataType: "text",
         success: function(response){
             //console.log(response);
@@ -100,6 +100,7 @@ function songClick(id){
 
     var song = getSongFromId(id);
     var simpleSong = convertSong(song);
+    var address= getExactAddress();
 
     console.log(JSON.stringify(simpleSong));
 
@@ -109,7 +110,7 @@ function songClick(id){
     //sent to the TBA que to be checked
     $.ajax({
         type: "POST",
-        url: "http://localhost:8080/queueSong",
+        url: address+"/queueSong",
         contentType: "application/Json",
         data: JSON.stringify(simpleSong),
         success: function(response){

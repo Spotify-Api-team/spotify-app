@@ -3,6 +3,8 @@ function testF() {
         $("Form.one").on("submit", function () {
 
             console.log("console log working");
+            var address= getExactAddress();
+            console.log(address);
 
             var that = $(this), //that reference current object we are working with
                 //url = that.attr('action'),
@@ -18,7 +20,7 @@ function testF() {
             $.ajax({
                 type: "POST",
                 contentType: "application/json",
-                url: "http://localhost:8080/createRoom",
+                url: address+"/createRoom",
                 data: JSON.stringify(data),
                 success: function (response) {
                     console.log("success");
@@ -27,12 +29,14 @@ function testF() {
                     var params = {
                         response_type: "code",
                         client_id: "b1e9cb8d5176473fb39f5e7aca4eaae9",
-                        redirect_uri: "http://localhost:8080/Room",
+                        redirect_uri: address+"/Room",
                         scope: "streaming user-read-email user-read-private user-modify-playback-state user-read-playback-state",
                         show_dialog: "true"
                     };
                     window.location = 'https://accounts.spotify.com/authorize?' +
                         $.param(params);
+
+
                 },
                 error: function (jqXhr, textStatus, errorMessage) {
                     console.log("error" + errorMessage);
@@ -45,7 +49,7 @@ function testF() {
 
     $(document).ready(function () {
         $("Form.two").on("submit", function () {
-
+             var address= getExactAddress();
 
             var that = $(this), //that reference current object we are working with
                 //url = that.attr('action'),
@@ -58,14 +62,15 @@ function testF() {
                     value = that.val();
                 data[name] = value;
             });
+
             $.ajax({
                 type: "POST",
                 contentType: "application/json",
-                url: "http://localhost:8080/joiningRoom",
+                url: address+"/joiningRoom",
                 data: JSON.stringify(data),
                 success: function (response) {
                     console.log("success");
-                    window.location.replace("http://localhost:8080/JoinRoom");
+                    window.location.replace(address+"/JoinRoom");
                 },
                 error: function (jqXhr, textStatus, errorMessage) {
                     console.log("error" + errorMessage);

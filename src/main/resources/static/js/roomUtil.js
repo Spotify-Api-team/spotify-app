@@ -9,9 +9,11 @@ var intervalID = window.setInterval(getCurrentSong, 1000);
 
 function getMembers(){
 
+
+    var address= getExactAddress();
     $.ajax({
             type: "GET",
-            url: "http://localhost:8080/getMembers",
+            url: address + "/getMembers",
             contentType: "application/Json",
             success: function (response) {
                 //console.log("got the members");
@@ -43,9 +45,10 @@ const displayMembers = (members) => {
 
 function getCurrentSong(){
 
+    var address= getExactAddress();
     $.ajax({
             type: "GET",
-            url: "http://localhost:8080/currentSong",
+            url: address +"/currentSong",
             contentType: "application/Json",
             success: function (response) {
                 //console.log("got the currentSOng");
@@ -60,7 +63,7 @@ function getCurrentSong(){
 function displayCurrentSong(song){
 
     var x = document.createElement("IMG");
-    x.setAttribute("src",src=song.image.url );
+    x.setAttribute("src",src = song.image.url );
     document.getElementById('currentSongImg').src=x.src;
-    document.getElementById('currentSong').innerHTML=song.name+' by '+song.artist;
+    document.getElementById('currentSong').innerHTML=song.name+'by'+song.artist;
 }

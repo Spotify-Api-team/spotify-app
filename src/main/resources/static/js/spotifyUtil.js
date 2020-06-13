@@ -2,9 +2,11 @@
 function getToken(){
     var token;
 
+    var address= getExactAddress();
+
      $.ajax({
             type: "GET",
-            url: "http://localhost:8080/token",
+            url: address +"/token",
             dataType: "text",
             async: false,
             success: function(response){
@@ -21,10 +23,12 @@ function getToken(){
 
 function getDeviceId(){
 
+    var address= getExactAddress();
+
     var deviceId;
     $.ajax({
         type: "GET",
-        url: "http://localhost:8080/deviceId",
+        url: address+"/deviceId",
         dataType: "text",
         async: false,
         success: function(response){
@@ -255,5 +259,9 @@ $(document).ready(function () {
     });
 
 
+ }
+
+ function getExactAddress(){
+    return "http://localhost:8080"
  }
 

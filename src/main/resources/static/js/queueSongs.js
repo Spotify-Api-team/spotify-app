@@ -4,9 +4,10 @@ var intervalID = window.setInterval(checkQueue, 1000);
 
 function checkQueue(){
 
+    var address= getExactAddress();
     $.ajax({
         type: "GET",
-        url: "http://localhost:8080/getSong",
+        url: address+"/getSong",
         dataType: "json",
         success: function(response){
 
@@ -23,11 +24,12 @@ function checkQueue(){
 function sendToQueue(song){
 
     console.log(song);
+    var address= getExactAddress();
 
     $.ajax({
 
         type: "POST",
-        url: "http://localhost:8080/confirmedSong",
+        url: address+"/confirmedSong",
         contentType: "application/Json",
         data: JSON.stringify(song),
         success: function(response){

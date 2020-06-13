@@ -17,6 +17,7 @@ function getUrlVars(){
 
 var queryString = window.location.search;
 var urlParams = new URLSearchParams(queryString);
+
 var code = urlParams.get("code");
 
 console.log(code);
@@ -30,6 +31,8 @@ var clientSecret = '4589c5631d33441199f7722186905fe0';
 var encodedData = window.btoa(clientId + ':' + clientSecret);
 var intervalID = window.setInterval(refreshToken, 3300000);
 
+var address= getExactAddress();
+
 $.ajax({
     type: "POST",
     contentType: 'application/x-www-form-urlencoded', //input
@@ -40,7 +43,7 @@ $.ajax({
     },
     data: $.param({   //puts in form of application/x-www-form-urlencoded
         code: code,
-        redirect_uri: 'http://localhost:8080/Room',
+        redirect_uri: address+'/Room',
         grant_type: 'authorization_code'
     }),
     success: function (response) {
@@ -59,7 +62,7 @@ $.ajax({
 
         $.ajax({
             type: "POST",
-            url: "http://localhost:8080/token",
+            url: address+"/token",
             contentType: "application/Json",
             data: window.token,
             error: function (jqXhr, textStatus, errorMessage) {
@@ -151,12 +154,15 @@ window.onSpotifyWebPlaybackSDKReady = () => {
             "songName":state.track_window.current_track.name
         }*/
 
+
+
         var currentSong= convertSong(state.track_window.current_track);
+        var address= getExactAddress();
 
         $.ajax({
 
             type: "POST",
-            url: "http://localhost:8080/currentSong",
+            url: address+"/currentSong",
             contentType: "application/Json",
             data: JSON.stringify(currentSong),
             success: function(response){
@@ -175,10 +181,12 @@ window.onSpotifyWebPlaybackSDKReady = () => {
 
 
 
+         var address= getExactAddress();
+         console.log(address);
         //post device id to java spring
         $.ajax({
             type: "POST",
-            url: "http://localhost:8080/deviceId",
+            url: address+"/deviceId",
             contentType: "text/plain",
             data: device_id,
             success: function(response){

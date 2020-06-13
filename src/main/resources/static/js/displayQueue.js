@@ -4,10 +4,11 @@ var intervalID = window.setInterval(updateQueue, 1000);
 function updateQueue(){
 
     songs = null;
+    var address= getExactAddress();
 
     $.ajax({
             type: "GET",
-            url: "http://localhost:8080/confirmedSong",
+            url: address+"/confirmedSong",
             dataType: "json",
             success: function(response){
                 //console.log(response);
