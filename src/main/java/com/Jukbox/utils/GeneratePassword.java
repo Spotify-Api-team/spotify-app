@@ -17,7 +17,7 @@ public class GeneratePassword {
       return ThreadLocalRandom.current().nextInt(0, length);
   }
 
-  public static List<String> getWords(){
+  public static List<String> getWords() throws FileNotFoundException{
     List<String> data = new ArrayList<>(); 
     try {
 			Scanner scanner = new Scanner(new File("/static/five_letter.txt"));
@@ -26,15 +26,22 @@ public class GeneratePassword {
 			}
 			scanner.close();
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+
+            e.printStackTrace();
+
     }
 
     return(data);
   }
 
   public static String createPassword(){
+        List<String> data;
+        try {
+            data = getWords();
+        }catch (FileNotFoundException e){
 
-    List<String> data= getWords();
+            return "doesntwork";
+        }
         //972 words in text doc 
         //word1
         String word1 =data.get(randomGen(5757));
