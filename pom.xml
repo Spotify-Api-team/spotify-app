@@ -18,6 +18,7 @@
 	<properties>
 		<java.version>11</java.version>
 		<start-class>com.Jukbox.JukboxApplication</start-class>
+		<tomcat.version>9.0.5</tomcat.version>
 	</properties>
 
 	<dependencies>
