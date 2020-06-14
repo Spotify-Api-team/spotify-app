@@ -20,7 +20,7 @@ public class GeneratePassword {
   public static List<String> getWords(){
     List<String> data = new ArrayList<>(); 
     try {
-			Scanner scanner = new Scanner(new File("five_letter.txt"));
+			Scanner scanner = new Scanner(new File("/resources/static/five_letter.txt"));
 			while (scanner.hasNextLine()) {
 				data.add(scanner.nextLine());
 			}
