@@ -262,6 +262,6 @@ $(document).ready(function () {
  }
 
  function getExactAddress(){
-    return "http://localhost:8080/Jukbox-1"
+    return "http://192.168.0.39:8080/Jukbox-1"
  }
 
