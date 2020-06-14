@@ -35,6 +35,9 @@ public class GeneratePassword {
   }
 
   public static String createPassword(){
+
+        return ("doesntwork");
+        /*
         List<String> data;
         try {
             data = getWords();
@@ -51,8 +54,8 @@ public class GeneratePassword {
         String word3 =data.get(randomGen(5757));
 
         String finWord= word1 + "-" + word2 + "-" + word3;
-        return(finWord);
-  
+        //return(finWord);
+    */
   }
 
 }
