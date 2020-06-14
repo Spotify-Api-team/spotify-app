@@ -11,7 +11,7 @@
 	</parent>
 	<groupId>com</groupId>
 	<artifactId>Jukbox</artifactId>
-	<version>JukBox</version>
+	<version>1</version>
 	<name>Jukbox</name>
 	<description>Project using spotify api</description>
 
