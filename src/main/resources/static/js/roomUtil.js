@@ -53,7 +53,7 @@ function getCurrentSong(){
             success: function (response) {
                 //console.log("got the currentSOng");
                 //console.log(response);
-                //displayCurrentSong(response);
+                displayCurrentSong(response);
             },
             error: function (jqXhr, textStatus, errorMessage) {
                                 console.log("error" + errorMessage);
