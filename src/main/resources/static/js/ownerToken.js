@@ -20,7 +20,7 @@ var urlParams = new URLSearchParams(queryString);
 
 var code = urlParams.get("code");
 
-console.log(code);
+//console.log(code);
 
 
 //our apps data
@@ -142,19 +142,12 @@ window.onSpotifyWebPlaybackSDKReady = () => {
     // Playback status updates
     player.addListener('player_state_changed', state => { console.log(state);
 
-        //trying to makea  current playing location on footer
+        //trying to make  current playing location on footer
+        /*
         console.log(state.track_window.current_track.name);
         console.log("src "+state.track_window.current_track.album.images[2].url);
         console.log(state.track_window.current_track.artists[0].name);
-
-        /*
-        currentSong={
-            "artist":state.track_window.current_track.artists[0].name,
-            "image":state.track_window.current_track.album.images[2].url,
-            "songName":state.track_window.current_track.name
-        }*/
-
-
+        */
 
         var currentSong= convertSong(state.track_window.current_track);
         var address= getExactAddress();
@@ -168,6 +161,18 @@ window.onSpotifyWebPlaybackSDKReady = () => {
             success: function(response){
                 //window.songChange=true;
                 //displayFooter(currentSong);
+            },
+            error: function(error){
+            }
+        });
+
+        $.ajax({
+            type: "POST",
+            url: address+"/songOver",
+            contentType: "application/Json",
+            data: JSON.stringify(currentSong),
+            success: function(response){
+
             },
             error: function(error){
             }

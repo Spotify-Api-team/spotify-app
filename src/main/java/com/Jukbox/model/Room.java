@@ -172,9 +172,32 @@ public class Room {
      *
      * @return the track from the top of the queue
      */
-    public Track popSong(){
+    public Track popTBASong(){
 
         return toBeAddedQueue.pop();
+
+    }
+
+
+    /**
+     * Pops song off of the real Queue
+     *
+     * @return the track from the top of the queue
+     */
+    public Track popSong(){
+
+        return queue.pop();
+
+    }
+
+    /**
+     * Gets the top of the real queue without removing it
+     *
+     * @return The track at the top of the queue
+     */
+    public Track getTop(){
+
+        return queue.top();
 
     }
 

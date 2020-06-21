@@ -64,7 +64,7 @@ public class RoomService {
         try {
             return roomRepository.findById(id).get();
         }catch (NullPointerException e){
-            System.out.println(e);
+            e.printStackTrace();
             return null;
         }
     }
@@ -207,7 +207,7 @@ public class RoomService {
 
         Room room = roomRepository.findById(id).get();
 
-        Track track = room.popSong();
+        Track track = room.popTBASong();
         roomRepository.save(room);
         return track;
 
@@ -233,5 +233,21 @@ public class RoomService {
         Room room = getRoomById(id);
         //Track function
         return room.getCurrentTrack();
+    }
+
+    public void songOver(int id, Track track){
+
+        Room room = getRoomById(id);
+
+        if(room != null) {
+
+            if (track.equals(room.getTop())) {
+
+                room.popSong();
+                roomRepository.save(room);
+
+            }
+        }
+
     }
 }

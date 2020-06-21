@@ -42,4 +42,14 @@ public class Track {
     public Image getImage() {
         return image;
     }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Track track = (Track) o;
+        return id.equals(track.id);
+    }
+
 }

@@ -23,6 +23,18 @@ public class SongQueue {
 
     }
 
+    public Track top(){
+
+        if(!queue.isEmpty()) {
+            Track track = queue.get(0);
+            return track;
+        }else
+            return null;
+
+    }
+
+
+
 
     public Track getLast(){
 
