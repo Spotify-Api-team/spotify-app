@@ -72,8 +72,8 @@ public class RoomService {
 
     /**
      *
-     * @param room
-     * @param id
+     * @param room the room
+     * @param id the members id
      * @return the correct memeber inside of the correct roomId
      */
     public Member getMemberByIdandRoom(Room room, int id){
@@ -110,8 +110,8 @@ public class RoomService {
     /**
      *  Adds a new member to a room
      *
-     * @param member
-     * @param room
+     * @param member the member object to add
+     * @param room the room to add to
      */
     public void updateRoom(Member member, Room room){
 
@@ -157,8 +157,9 @@ public class RoomService {
     }
 
     /**
+     * Get all the mebers of a room by  room id
      *
-     * @param id
+     * @param id id of the room
      * @return the ArrayList<Member> from repository
      */
     public ArrayList<Member> getMembers (int id){
@@ -214,9 +215,10 @@ public class RoomService {
     }
 
     /**
+     * Adds a track to the current track
      *
-     * @param track
-     * @param room
+     * @param track the track currenty playing
+     * @param room the room to add to
      */
     public void addCurrentTrack(Track track, Room room) {
         room.addCurrentTrack(track);
@@ -224,8 +226,9 @@ public class RoomService {
     }
 
     /**
+     * Gets the current playing track of a room
      *
-     * @param id
+     * @param id the id of the room
      * @return the current tack playing to the current song controller
      */
     public Track getCurrentTrack(int id){
@@ -235,6 +238,13 @@ public class RoomService {
         return room.getCurrentTrack();
     }
 
+    /**
+     * When a state change happens check id the song has changed and remove the song
+     * from the top of the queue
+     *
+     * @param id room id
+     * @param track the track
+     */
     public void songOver(int id, Track track){
 
         Room room = getRoomById(id);

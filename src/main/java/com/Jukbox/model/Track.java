@@ -8,12 +8,16 @@ import java.util.ArrayList;
 
 public class Track {
 
+    //spotify id of the track
     private String id;
 
+    //Name of the track
     private String name;
 
+    //Name of the artist
     private String artist;
 
+    //Cover image of the track
     private Image image;
 
     public Track(@JsonProperty("id") String id, @JsonProperty("name") String name,

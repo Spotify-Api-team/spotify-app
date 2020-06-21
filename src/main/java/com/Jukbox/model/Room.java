@@ -211,6 +211,11 @@ public class Room {
         this.currentTrack=current;
     }
 
+    /**
+     * Get the current playing track
+     *
+     * @return Track current track
+     */
     public Track getCurrentTrack() {
         return currentTrack;
     }

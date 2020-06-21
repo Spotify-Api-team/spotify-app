@@ -6,12 +6,21 @@ public class SongQueue {
 
     private ArrayList<Track> queue;
 
+    /**
+     * Default constructor
+     *
+     */
     public SongQueue(){
 
         queue = new ArrayList<Track>();
 
     }
 
+    /**
+     * Gets and removes the top of the queue
+     *
+     * @return Track at the top of the queue
+     */
     public Track pop(){
 
         if(!queue.isEmpty()) {
@@ -23,6 +32,11 @@ public class SongQueue {
 
     }
 
+    /**
+     * Gets the top of the queue without removing it
+     *
+     * @return
+     */
     public Track top(){
 
         if(!queue.isEmpty()) {
@@ -33,9 +47,11 @@ public class SongQueue {
 
     }
 
-
-
-
+    /**
+     * Gets the last element in the queue
+     *
+     * @return Track the last track
+     */
     public Track getLast(){
 
         if(!queue.isEmpty()){
@@ -46,16 +62,31 @@ public class SongQueue {
 
     }
 
+    /**
+     * return list representation of this queue
+     *
+     * @return ArrayList representation of the queue
+     */
     public ArrayList<Track> getQueue() {
         return queue;
     }
 
+    /**
+     * Add a track to the queue
+     *
+     * @param track Track to add
+     */
     public void addTrack(Track track){
 
         queue.add(track);
 
     }
 
+    /**
+     * Check if queue is empty
+     *
+     * @return boolean whether queue is empty
+     */
     public boolean isEmpty(){
         return queue.isEmpty();
 
