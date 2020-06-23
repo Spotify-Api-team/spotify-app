@@ -262,6 +262,6 @@ $(document).ready(function () {
  }
 
  function getExactAddress(){
-    return "http://jukbox.live/Jukbox-1"
+    return "http://jukbox.live:9191/Jukbox-1"
  }
 
