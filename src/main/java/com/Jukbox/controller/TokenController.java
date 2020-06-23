@@ -18,10 +18,10 @@ public class TokenController {
     @GetMapping
     public String getToken(HttpSession session){
 
-        System.out.println("getting token");
+        //System.out.println("getting token");
         Room temp = roomService.getRoomById((int)session.getAttribute("roomId"));
         String token = temp.getOwner().getSpotifyToken();
-        System.out.println(token);
+        //System.out.println(token);
         return token;
     }
 
@@ -29,7 +29,7 @@ public class TokenController {
     @PostMapping
     public void setToken(@RequestBody String token, HttpSession session){
 
-        System.out.println("postToken");
+        //System.out.println("postToken");
         int id = (int)session.getAttribute("roomId");
         roomService.addSpotifyToken(token, id);
     }

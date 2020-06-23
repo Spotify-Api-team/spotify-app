@@ -6,8 +6,7 @@ import javax.servlet.http.HttpSession;
 
 /**
  * Owners are the users that make the rooms
- * They likely need a spotify premium account
- * MOST LIKELY WILL NEED TO ADD MORE TO THIS CLASS LIKE SPOTIFY CREDENTIALS/USER INFO LATER ON
+ * They need a spotify premium account
  *
  */
 public class Owner{
@@ -28,6 +27,10 @@ public class Owner{
 
     }
 
+    /**
+     * Add the spotify token to the Owner
+     * @param token String spotify token
+     */
     public void setSpotifyToken(String token){
 
         this.spotifyToken = token;
