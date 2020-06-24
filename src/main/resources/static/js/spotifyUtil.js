@@ -265,3 +265,57 @@ $(document).ready(function () {
     return "http://localhost:8080"
  }
 
+ function endPage(){
+     var address = getExactAddress
+     console.log("go to end page");
+     window.location.replace("/End");
+ }
+
+function makePlaylist(){
+   var rName = document.getElementById('roomName').innerHTML;
+   console.log("this is the name"+name);
+   var token = getToken();
+   console.log(token);
+  $.ajax({
+        type: "GET",
+        url: "https://api.spotify.com/v1/me",
+        contentType: "application/json",
+        async:false,
+        headers:{
+            'Authorization': 'Bearer ' + token
+        },
+        success: function(response){
+            console.log("got user info");
+            console.log(response);
+            window.id = response.id
+            console.log(id);
+
+        },
+        error: function(xhr, status, error){
+        }
+   });
+    console.log("token"+token);
+   $.ajax({
+           type: "POST",
+           url: "https://api.spotify.com/v1/users/"+ window.id +"/playlists",
+           contentType: "application/json",
+           headers:{
+               'Authorization': 'Bearer ' + token
+           },
+           data: {
+                   name: rName,
+                   public: true,
+                   description: 'playlist made from Jukbox'
+               },
+           success: function(response){
+               console.log("made playlist");
+
+           },
+           error: function(xhr, status, error){
+           }
+      });
+
+
+
+}
+
