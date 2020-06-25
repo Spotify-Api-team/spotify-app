@@ -22,7 +22,7 @@ public class getFullSongList {
 
     @GetMapping
     @ResponseBody
-    public ArrayList<String> getSongToAdd(HttpSession session){
+    public String [] getSongToAdd(HttpSession session){
 
         Room room =  roomService.getRoomById((int)session.getAttribute("roomId"));
 
@@ -32,11 +32,11 @@ public class getFullSongList {
 
 
 
-        ArrayList<String> fullList = new ArrayList<String>();
+        String [] fullList = new String[list.size()];
         for(int i =0 ;i<list.size();i++) {
 
             //fullList.add("spotify:track:" + list.get(i).getId());
-            fullList.add(list.get(i).getId());
+            fullList[i]=(list.get(i).getId());
         }
 
         return fullList;
