@@ -235,7 +235,7 @@ $(document).ready(function () {
     //add song to queue or start song if no device is active
     $.ajax({
         type: "POST",
-        url: "https://api.spotify.com/v1/me/player/queue?uris=spotify:track:"+id,
+        url: "https://api.spotify.com/v1/me/player/queue?uri=spotify:track:"+id,
         contentType: "application/json",
         async: false,
         headers:{
