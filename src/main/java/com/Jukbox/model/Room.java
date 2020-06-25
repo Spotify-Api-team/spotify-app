@@ -37,6 +37,10 @@ public class Room {
 
     private SongQueue queue;
 
+    private SongQueue fullQueue;
+
+
+
     private Track currentTrack;
 
     /**
@@ -51,6 +55,8 @@ public class Room {
         toBeAddedQueue = new SongQueue();
         queue = new SongQueue();
         currentTrack=null;
+        fullQueue=new SongQueue();
+
 
 
     }
@@ -78,6 +84,7 @@ public class Room {
 
         this.members.add(member);
     }
+
 
     /**
      * get all members
@@ -150,7 +157,11 @@ public class Room {
      */
     public void addToFinalQueue(Track track){
 
+        //going to be played next queue
         queue.addTrack(track);
+
+        // entire room song list
+        fullQueue.addTrack(track);
 
     }
 
@@ -163,6 +174,14 @@ public class Room {
 
         return queue.getQueue();
 
+    }
+
+    /**
+     *
+     * @return entire room queue
+     */
+    public SongQueue getFullQueue() {
+        return fullQueue;
     }
 
 

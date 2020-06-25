@@ -191,6 +191,7 @@ public class RoomService {
     public void addToQueue(Track track, Room room){
 
         room.addToFinalQueue(track);
+
         roomRepository.save(room);
 
     }

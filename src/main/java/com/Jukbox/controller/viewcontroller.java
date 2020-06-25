@@ -71,8 +71,8 @@ public class viewcontroller {
         return "Search";
     }
 
-    @RequestMapping('/End')
-    public String End(Model model, HttpSession session){
+    @RequestMapping("/End")
+    public String EndPage(Model model, HttpSession session){
         return "End";
     }
 
