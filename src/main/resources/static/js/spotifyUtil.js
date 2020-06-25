@@ -272,15 +272,18 @@ $(document).ready(function () {
  }
 
 function makePlaylist(){
-  // var rName = document.getElementById('roomName').innerHTML;
+
+    // var rName = document.getElementById('roomName').innerHTML;
     var rName = "Test"
     var getList =[]
     var address = getExactAddress();
     var playListId;
-   console.log("this is the name"+name);
-   var token = getToken();
-   console.log(token);
-  $.ajax({
+    //console.log("this is the name"+name);
+    var token = getToken();
+    console.log(token);
+
+    //get user info
+    $.ajax({
         type: "GET",
         url: "https://api.spotify.com/v1/me",
         contentType: "application/json",
@@ -296,9 +299,9 @@ function makePlaylist(){
         },
         error: function(xhr, status, error){
         }
-   });
-    console.log("token"+token);
-   $.ajax({
+    });
+
+    $.ajax({
            type: "POST",
            url: "https://api.spotify.com/v1/users/"+ window.id +"/playlists",
            contentType: "application/json",
@@ -318,7 +321,7 @@ function makePlaylist(){
            },
            error: function(xhr, status, error){
            }
-      });
+    });
 
 
     $.ajax({
@@ -331,7 +334,7 @@ function makePlaylist(){
                console.log(response);
            }
 
-       });
+    });
 
     console.log(token)
     var i;
@@ -350,7 +353,7 @@ function makePlaylist(){
             error: function(xhr, status, error){
                 console.log(token)
             }
-        });
+       });
     }
 
 

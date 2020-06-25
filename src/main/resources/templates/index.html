@@ -28,9 +28,21 @@
         <label>Name:</label>
         <input type="text" name="fname"><br><br>
         <label> Join Session:</label>
-        <input type="text" name="memberPassword">
+        <input type="text" name="memberPassword" id = "mp" onkeyup="addDashes(this)">
         <input type="submit" value="Join Room">
     </Form>
+
+    <script>
+        function addDashes(element){
+
+            let input = document.getElementById(element.id);
+            input = input.value.split('-').join(''); //Remove a dash if entered
+
+            let finalVal = input.match(/.{1,5}/g).join('-');
+            document.getElementById(element.id).value = finalVal;
+
+        }
+    </script>
 
 
 </body>

@@ -98,6 +98,9 @@ public class RoomService {
      * @return
      */
     public Room findByPassword(String roomPassword){
+
+        roomPassword = roomPassword.strip();
+
         try {
             return roomRepository.findByRoomPassword(roomPassword).get();
         }catch (NoSuchElementException e){
