@@ -356,8 +356,7 @@ function makePlaylist(){
        });
     }
 
-
-
+    alert("Created playlist");
 
 }
 
