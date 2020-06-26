@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 @RequestMapping("/getFullSongList")
 @RestController
-public class getFullSongList {
+public class PlaylistController {
 
     @Autowired
     RoomService roomService;
