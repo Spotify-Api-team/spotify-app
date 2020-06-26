@@ -26,6 +26,7 @@
 
 <header class="container-fluid text-center">
     <h1 th:text="${roomPassword}"/>
+    <button onclick="endPage()" id="end">End the session</button>
 </header>
 
 
@@ -34,7 +35,7 @@
 
         <div class="col-sm-2 sidenav">
             <h1 th:text="${roomName}"/>
-            <h2 th:text="${ownerName+'s Room'}"/>
+            <h2>Queue</h2>
             <ul id = "queue"></ul>
         </div>
 
@@ -55,7 +56,8 @@
         </div>
 
         <div class="col-sm-2 sidenav">
-           <h1>members</h1>
+            <h2 th:text="'Owner: ' + ${ownerName}"/>
+            <h1>Members</h1>
             <ul id="memberList"></ul>
         </div>
         <script src="js/roomUtil.js"></script>

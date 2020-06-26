@@ -98,6 +98,9 @@ public class RoomService {
      * @return
      */
     public Room findByPassword(String roomPassword){
+
+        roomPassword = roomPassword.strip();
+
         try {
             return roomRepository.findByRoomPassword(roomPassword).get();
         }catch (NoSuchElementException e){
@@ -191,6 +194,7 @@ public class RoomService {
     public void addToQueue(Track track, Room room){
 
         room.addToFinalQueue(track);
+
         roomRepository.save(room);
 
     }

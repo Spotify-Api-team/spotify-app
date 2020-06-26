@@ -265,3 +265,98 @@ $(document).ready(function () {
     return "http://jukbox.live:9191/Jukbox-1"
  }
 
+ function endPage(){
+     var address = getExactAddress();
+     console.log("go to end page");
+     window.location.replace(address+"/End");
+ }
+
+function makePlaylist(){
+
+    // var rName = document.getElementById('roomName').innerHTML;
+    var rName = "Test"
+    var getList =[]
+    var address = getExactAddress();
+    var playListId;
+    //console.log("this is the name"+name);
+    var token = getToken();
+    console.log(token);
+
+    //get user info
+    $.ajax({
+        type: "GET",
+        url: "https://api.spotify.com/v1/me",
+        contentType: "application/json",
+        async:false,
+        headers:{
+            'Authorization': 'Bearer ' + token
+        },
+        success: function(response){
+            console.log("got user info");
+            console.log(response);
+            window.id = response.id
+
+        },
+        error: function(xhr, status, error){
+        }
+    });
+
+    $.ajax({
+           type: "POST",
+           url: "https://api.spotify.com/v1/users/"+ window.id +"/playlists",
+           contentType: "application/json",
+           async: false,
+           headers:{
+               'Authorization': 'Bearer ' + token
+           },
+           data: JSON.stringify({
+                   name: rName,
+                   public: true,
+                   description: 'playlist made from Jukbox'
+               }),
+           success: function(response){
+               console.log("made playlist");
+               console.log(response)
+               playListId = response.id
+           },
+           error: function(xhr, status, error){
+           }
+    });
+
+
+    $.ajax({
+           type: "GET",
+           url: address+"/getFullSongList",
+           dataType: "json",
+           async: false,
+           success: function(response){
+               getList = response;
+               console.log(response);
+           }
+
+    });
+
+    console.log(token)
+    var i;
+    for(i=0;i<getList.length;i++){
+       $.ajax({
+            type: "POST",
+            url: "https://api.spotify.com/v1/playlists/"+ playListId +"/tracks?uris=spotify:track:"+getList[i],
+            contentType: "application/json",
+            headers:{
+                'Authorization': 'Bearer ' + token
+            },
+            success: function(response){
+                console.log("added to the playlist");
+                console.log(response)
+            },
+            error: function(xhr, status, error){
+                console.log(token)
+            }
+       });
+    }
+
+    alert("Created playlist");
+
+}
+

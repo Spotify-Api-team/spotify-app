@@ -30,7 +30,7 @@ function testF() {
                         response_type: "code",
                         client_id: "b1e9cb8d5176473fb39f5e7aca4eaae9",
                         redirect_uri: address+"/Room",
-                        scope: "streaming user-read-email user-read-private user-modify-playback-state user-read-playback-state",
+                        scope: "streaming user-read-email user-read-private user-modify-playback-state user-read-playback-state playlist-modify-public",
                         show_dialog: "true"
                     };
                     window.location = 'https://accounts.spotify.com/authorize?' +
