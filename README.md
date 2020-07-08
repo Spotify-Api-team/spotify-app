@@ -9,3 +9,5 @@
 
 
 ## More info
+* [More info here](docs/info.md)
+
