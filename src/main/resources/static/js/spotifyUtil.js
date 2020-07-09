@@ -262,7 +262,7 @@ $(document).ready(function () {
  }
 
  function getExactAddress(){
-    return "http://localhost:8080"
+    return "http://jukbox-spotify.herokuapp.com"
  }
 
  function endPage(){
