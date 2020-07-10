@@ -262,7 +262,7 @@ $(document).ready(function () {
  }
 
  function getExactAddress(){
-    return "https://jukbox-spotify.herokuapp.com"
+    return "http://jukbox.live"
  }
 
  function endPage(){
