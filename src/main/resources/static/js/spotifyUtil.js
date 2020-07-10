@@ -303,7 +303,7 @@ function makePlaylist(){
     $.ajax({
            type: "GET",
            url: address+"/createRoom",
-           dataType: "json",
+           dataType: "text",
            async: false,
            success: function(response){
                rName = response;
