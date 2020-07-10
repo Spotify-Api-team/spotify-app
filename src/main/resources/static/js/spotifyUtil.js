@@ -17,7 +17,6 @@ function getToken(){
      });
 
      return token;
-
 }
 
 
@@ -274,7 +273,7 @@ $(document).ready(function () {
 function makePlaylist(){
 
     // var rName = document.getElementById('roomName').innerHTML;
-    var rName = "Test"
+    var rName;
     var getList =[]
     var address = getExactAddress();
     var playListId;
@@ -299,6 +298,16 @@ function makePlaylist(){
         },
         error: function(xhr, status, error){
         }
+    });
+
+    $.ajax({
+           type: "GET",
+           url: address+"/createRoom",
+           dataType: "json",
+           async: false,
+           success: function(response){
+               rName = response
+           }
     });
 
     $.ajax({
@@ -333,7 +342,6 @@ function makePlaylist(){
                getList = response;
                console.log(response);
            }
-
     });
 
     console.log(token)

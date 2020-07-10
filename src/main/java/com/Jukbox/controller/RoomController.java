@@ -30,5 +30,13 @@ public class RoomController {
         int id = roomService.addRoom(owner);
         session.setAttribute("roomId", id);
     }
+    @GetMapping
+    public String getRoomName(HttpSession session){
+
+        Room room = roomService.getRoomById((int)session.getAttribute("roomId"));
+        Owner owner = room.getOwner();
+        return owner.getRoomName();
+
+    }
 
 }
