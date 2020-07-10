@@ -273,7 +273,7 @@ $(document).ready(function () {
 function makePlaylist(){
 
     // var rName = document.getElementById('roomName').innerHTML;
-    var rName;
+    var rName ="";
     var getList =[]
     var address = getExactAddress();
     var playListId;
@@ -306,7 +306,8 @@ function makePlaylist(){
            dataType: "json",
            async: false,
            success: function(response){
-               rName = response
+               rName = response;
+               console.log(rName)
            }
     });
 
