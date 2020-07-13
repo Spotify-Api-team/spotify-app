@@ -87,6 +87,7 @@ $.ajax({
 function refreshToken(){
     $.ajax({
         type: "POST",
+        async: false,
         dataType: "json", //output
         url: 'https://accounts.spotify.com/api/token',
         headers:{
@@ -104,6 +105,17 @@ function refreshToken(){
         error: function (jqXhr, textStatus, errorMessage) {
             console.log("errorRefreshToken" + errorMessage);
 
+        }
+    });
+
+    $.ajax({
+        type: "POST",
+        async: false,
+        url: address+"/token",
+        contentType: "application/Json",
+        data: window.token,
+        error: function (jqXhr, textStatus, errorMessage) {
+            console.log("error" + errorMessage);
         }
     });
 }
