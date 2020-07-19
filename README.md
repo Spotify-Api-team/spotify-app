@@ -1,4 +1,5 @@
-# Jukbox with spotify Api
+# Jukbox 
+###### *Spotify api project utilizing a SpringBoot restful framework*
 * Aaron Schaefer
 * Michael Jones
 

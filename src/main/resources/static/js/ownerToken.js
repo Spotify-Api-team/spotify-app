@@ -101,6 +101,7 @@ function refreshToken(){
             console.log(response);
             console.log('token refresh')
             window.token= response.access_token;
+
         },
         error: function (jqXhr, textStatus, errorMessage) {
             console.log("errorRefreshToken" + errorMessage);
