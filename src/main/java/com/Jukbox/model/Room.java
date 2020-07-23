@@ -57,8 +57,6 @@ public class Room {
         currentTrack=null;
         fullQueue=new SongQueue();
 
-
-
     }
 
     /**
