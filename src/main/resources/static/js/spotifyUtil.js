@@ -261,7 +261,7 @@ $(document).ready(function () {
  }
 
  function getExactAddress(){
-    return "http://jukbox.live"
+    return "http://localhost:8080"
  }
 
  function endPage(){
