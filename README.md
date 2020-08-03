@@ -1,6 +1,6 @@
 # Jukbox 
 ###### *Spotify api project utilizing a SpringBoot restful framework*
-* Aaron Schaefer
+* Aaron Schaefer 
 * Michael Jones
 
 ## Dependencies 
@@ -9,8 +9,7 @@
 
 ## Running
 * Make sure MongoDb is running locally
-* mvn run in the directory of the project 
-
+* mvn spring-boot:run in the directory of the project 
 
 
 ## More info
