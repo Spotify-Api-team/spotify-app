@@ -9,7 +9,7 @@
 
 ## Running
 * Make sure MongoDb is running locally
-* mvn run
+* mvn run in the directory of the project 
 
 
 
